@@ -1,7 +1,7 @@
 // src/components/animations/TypingAnimation.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 export const TypingAnimation = () => {
   const [name, setName] = useState('');
@@ -12,13 +12,13 @@ export const TypingAnimation = () => {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
 
   const fullName = "Lasantha Kulasooriya";
-  const phrases = [
+  const phrases = useMemo(() =>[
     "🚀 I am a Data Scientist & AI Engineer.",
     "💡 I turn data into intelligent solutions.",
     "📊 I love discovering patterns in data.",
     "🤖 I build and optimize AI models.",
     "💻 I enjoy coding and solving complex problems."
-];
+],[]);
 
 
   const techWords = [
@@ -85,7 +85,7 @@ export const TypingAnimation = () => {
       setShowCursor(prev => !prev);
     }, 500);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [phrases]);
 
   // Random keyword highlight effect
   useEffect(() => {
@@ -94,7 +94,7 @@ export const TypingAnimation = () => {
       setActiveWordIndex(newIndex);
     }, 2000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [techWords]);
 
   return (
     <div className="space-y-3">

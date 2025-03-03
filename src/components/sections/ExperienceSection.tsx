@@ -1,6 +1,6 @@
 // src/components/sections/experience/ExperienceSection.tsx
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Experience } from '@/types/experience';
 import ExperienceCard from './experience/ExperienceCard';
 import TimelineNode from './experience/TimelineNode';

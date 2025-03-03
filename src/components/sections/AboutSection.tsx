@@ -83,7 +83,7 @@ export const AboutSection = () => {
           >
             <div className="space-y-2 md:space-y-3 text-gray-300 font-roboto lg:pr-8">
               <h3 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent text-center lg:text-left mb-2">
-                Hi, I'm Lasantha
+                Hi, I&apos;m Lasantha
               </h3>
               <p className="text-sm md:text-base leading-relaxed text-justify">
                 I am a Data Scientist and AI Engineer with over a year of experience, 

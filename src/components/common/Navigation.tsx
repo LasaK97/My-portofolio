@@ -1,13 +1,13 @@
 // src/components/common/Navigation.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Home, Code, GraduationCap, Briefcase, FileCode, Terminal, Mail } from 'lucide-react';
 
 export const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
 
-  const sections = [
+  const sections = useMemo(() => [
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'about', icon: Code, label: 'About' },
     { id: 'experience', icon: Briefcase, label: 'Experience' },
@@ -15,8 +15,8 @@ export const Navigation = () => {
     { id: 'skills', icon: Terminal, label: 'Skills' },
     { id: 'projects', icon: FileCode, label: 'Projects' },
     { id: 'contact', icon: Mail, label: 'Contact' }
-  ];
-
+  ], []);
+  
   useEffect(() => {
     // Function to calculate which section is in view
     const handleScroll = () => {
@@ -41,7 +41,7 @@ export const Navigation = () => {
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sections]);
 
   // Add smooth scrolling behavior
   useEffect(() => {

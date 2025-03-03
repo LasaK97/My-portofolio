@@ -5,8 +5,7 @@ import { motion } from 'framer-motion';
 import { TimelineNodeProps } from '@/types/experience';
 
 const TimelineNode: React.FC<TimelineNodeProps> = ({ 
-  isCurrentJob, 
-  isVisible, 
+  isCurrentJob,  
   logo 
 }) => {
   return (

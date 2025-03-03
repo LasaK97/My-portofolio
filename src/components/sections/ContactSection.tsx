@@ -84,7 +84,7 @@ export const ContactSection = () => {
           <p className="text-gray-400 text-center mb-8">
             Solving complex problems with AI & data. {" "}
             <span className="text-cyan-400 underline cursor-pointer font-orbitron">
-              Let's connect!
+              Let&apos;s connect!
             </span>
           </p>
         </div>
