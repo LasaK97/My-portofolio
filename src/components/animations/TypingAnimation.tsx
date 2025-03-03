@@ -94,7 +94,7 @@ export const TypingAnimation = () => {
       setActiveWordIndex(newIndex);
     }, 2000);
     return () => clearInterval(intervalId);
-  }, [techWords]);
+  }, [techWords.length]);
 
   return (
     <div className="space-y-3">
