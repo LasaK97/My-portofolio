@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Github, Linkedin, Mail, Twitter, Download, } from 'lucide-react';
+import { Github, Linkedin, Mail, Download } from 'lucide-react';
 
 export const Header = () => {
   const handleDownloadResume = () => {
@@ -36,14 +36,6 @@ export const Header = () => {
           >
             <Linkedin size={24} />
           </a>
-          {/* <a
-            href="https://twitter.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-cyan-500 transition-colors"
-          >
-            <Twitter size={24} />
-          </a> */}
         </div>
 
         {/* Resume Button and Contact Button */}

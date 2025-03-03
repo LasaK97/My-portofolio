@@ -60,7 +60,7 @@ const ExperienceSection: React.FC = () => {
   }, [experiences.length]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-1">
+    <section ref={sectionRef} className="relative min-h-screen py-16">
       <div className="text-center mb-5">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
         Work Experience

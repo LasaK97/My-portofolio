@@ -73,7 +73,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="min-h-screen relative">
+    <section className="min-h-screen relative py-16">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Section Title */}
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-5 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">

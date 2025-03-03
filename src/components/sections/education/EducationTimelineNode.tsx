@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { EducationTimelineNodeProps } from '@/types/education';
 
 const EducationTimelineNode: React.FC<EducationTimelineNodeProps> = ({ 
-  isVisible, 
   logo 
 }) => {
   return (

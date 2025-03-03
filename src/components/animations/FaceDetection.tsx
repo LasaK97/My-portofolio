@@ -10,7 +10,6 @@ interface FaceDetectionProps {
 export const FaceDetection: React.FC<FaceDetectionProps> = ({ isActive }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [phase, setPhase] = useState(0);
-  const [zoomScale, setZoomScale] = useState(1);
 
   useEffect(() => {
     if (!isActive || !canvasRef.current) return;
@@ -28,7 +27,13 @@ export const FaceDetection: React.FC<FaceDetectionProps> = ({ isActive }) => {
       width: canvas.width * 0.60,
       height: canvas.height * 0.75
     };
-
+    interface BoxConfig {
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+    }
+    
     // Keypoint Configuration
     const keypoints = [
       // Eyes
@@ -142,7 +147,7 @@ export const FaceDetection: React.FC<FaceDetectionProps> = ({ isActive }) => {
       return adjustedBox;
     }
 
-    function drawScanLine(progress: number, adjustedBox: any) {
+    function drawScanLine(progress: number, adjustedBox: BoxConfig) {
       const scanY = adjustedBox.y + (adjustedBox.height * progress);
       const gradient = ctx.createLinearGradient(0, scanY - 20, 0, scanY + 20);
       gradient.addColorStop(0, 'rgba(0, 255, 255, 0)');
@@ -153,7 +158,7 @@ export const FaceDetection: React.FC<FaceDetectionProps> = ({ isActive }) => {
       ctx.fillRect(adjustedBox.x, scanY - 20, adjustedBox.width, 40);
     }
 
-    function drawKeypoints(progress: number, adjustedBox: any) {
+    function drawKeypoints(progress: number, adjustedBox: BoxConfig) {
       // Adjust keypoint positions based on zoom level
       const adjustedKeypoints = keypoints.map(point => ({
         x: adjustedBox.x + (point.x - boxConfig.x) * (adjustedBox.width / boxConfig.width),

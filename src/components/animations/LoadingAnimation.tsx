@@ -122,6 +122,7 @@ const LoadingAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
 
       if (isExploding) {
         explosionProgress += 0.02;
+        ctx.globalAlpha = Math.max(1 - explosionProgress, 0); 
       }
 
       animationRef.current = requestAnimationFrame(animate);
