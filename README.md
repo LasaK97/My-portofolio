@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Data Science Portfolio Website - Lasantha Kulasooriya
 
-## Getting Started
+## Overview
+This portfolio website showcases my front-end development skills, which complement my primary expertise as a data scientist. While my professional focus is on data analysis, machine learning, and statistical modeling, this project demonstrates my ability to work with modern web technologies.
 
-First, run the development server:
+## Purpose
+As a data scientist, I recognize the value of being able to effectively communicate findings and create interactive visualizations. This portfolio site serves as evidence of my versatility in bridging the gap between data science and front-end development, showcasing that I can:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Create responsive web interfaces using Next.js and Tailwind CSS
+- Develop clean, modern UI components
+- Implement data visualizations for web platforms
+- Package and present my data science projects in an accessible format
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
+- **Next.js**: React framework for server-rendered applications
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+- **Git/GitHub**: Version control and project management
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Projects Included
+The website showcases various data science projects I've worked on, with a focus on:
+- Data analysis and visualization
+- Machine learning models and applications
+- Statistical methods and insights
+- Real-world problem solving using data
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Connect With Me
+Feel free to reach out for collaboration opportunities or to discuss how my combined skills in data science and front-end development can add value to your organization.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*Note: While this portfolio demonstrates my front-end capabilities, my primary professional focus remains data science, analytics, and machine learning.*
