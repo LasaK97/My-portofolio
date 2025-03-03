@@ -1,0 +1,69 @@
+/* src/styles/animations.css */
+
+/* Intro Section Animations */
+@keyframes introBorderPulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.intro-border-pulse {
+  animation: introBorderPulse 2s ease-in-out infinite;
+}
+
+
+/* Experience Section Animations */
+@keyframes expCirclePing {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes gradientRotate {
+  0% { 
+    background-position: 0% 50%;
+    transform: none;  /* explicitly prevent any transform */
+  }
+  50% { 
+    background-position: 100% 50%;
+    transform: none;  /* explicitly prevent any transform */
+  }
+  100% { 
+    background-position: 0% 50%;
+    transform: none;  /* explicitly prevent any transform */
+  }
+}
+
+.exp-gradient-rotate {
+  background-size: 200% 200%;
+  animation: gradientRotate 3s linear infinite;
+  transform: none; /* explicitly prevent any transform */
+}
+.exp-circle-ping {
+  animation: expCirclePing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.exp-circle-ping-delay-1 {
+  animation: expCirclePing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.5s;
+}
+
+.exp-circle-ping-delay-2 {
+  animation: expCirclePing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s;
+}
+

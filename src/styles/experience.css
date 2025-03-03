@@ -1,0 +1,41 @@
+/* src/styles/experience.css */
+
+@keyframes expCirclePing {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.exp-circle-ping {
+  animation: expCirclePing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.exp-circle-ping-delay-1 {
+  animation: expCirclePing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 0.5s;
+}
+
+.exp-circle-ping-delay-2 {
+  animation: expCirclePing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s;
+}
+
+.experience-timeline {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    rgba(6, 182, 212, 0.7),
+    rgba(59, 130, 246, 0.7),
+    rgba(168, 85, 247, 0.7)
+  );
+}
