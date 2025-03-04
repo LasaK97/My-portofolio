@@ -22,7 +22,27 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Portofolio | Lasantha",
-  description: "Data Science & AI Engineer Portfolio",
+  description: "Professional portfolio of Lasantha Kulasooriya, showcasing skills in Data Science, AI Engineering, Computer Vision and NLP projects, and experience as a data scientist and AI engineer.",
+  keywords: "Lasantha Kulasooriya, Data Scientist, AI Engineer, Computer Vision Engineer, portofolio, Insurance Data scientist, AI App Developement, Data Scientist Sri Lanka, AI Engineer Sri Lanka",
+  openGraph: {
+    title: 'Lasantha Kulasooriya | Data Scientist',
+    description: 'Professional portfolio showcasing my skills and projects in data science and AI Engineer',
+    url: 'https://lk-ai.vercel.app',
+    siteName: 'Lasantha Kulasooriya Portfolio',
+    // images: [
+    //   {
+    //     url: 'https://your-domain.com/images/og-image.jpg',
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Lasantha Kulasooriya - Data Scientist',
+    //   }
+    // ],
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
 };
 
 export default function RootLayout({

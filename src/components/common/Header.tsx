@@ -1,4 +1,3 @@
-// src/components/common/Header.tsx
 'use client';
 
 import React from 'react';
@@ -16,7 +15,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-6 py-4">
+    <header className="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 py-4">
       <div className="flex justify-between items-center">
         {/* Social Media Icons */}
         <div className="flex space-x-4">
@@ -43,23 +42,27 @@ export const Header = () => {
           {/* Resume Button */}
           <button
             onClick={handleDownloadResume}
-            className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-6 py-2 rounded-lg 
-            hover:from-purple-600 hover:to-cyan-600 transition-all duration-300 
-            shadow-lg hover:shadow-purple-500/25 flex items-center gap-2 animate-gradient-x font-roboto"
+            className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white 
+            px-6 py-2 rounded-lg hover:from-purple-600 hover:to-cyan-600 
+            transition-all duration-300 shadow-lg hover:shadow-purple-500/25 
+            flex items-center gap-2 animate-gradient-x font-roboto
+            max-sm:px-2 max-sm:py-2"
           >
             <Download size={18} />
-            Get my Resume
+            <span className="sm:inline hidden">Get my Resume</span>
           </button>
 
           {/* Contact Button */}
           <a
             href="#contact"
-            className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-6 py-2 rounded-lg 
-            hover:from-purple-600 hover:to-cyan-600 transition-all duration-300 
-            shadow-lg hover:shadow-purple-500/25 flex items-center gap-2 animate-gradient-x font-roboto"
+            className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white 
+            px-6 py-2 rounded-lg hover:from-purple-600 hover:to-cyan-600 
+            transition-all duration-300 shadow-lg hover:shadow-purple-500/25 
+            flex items-center gap-2 animate-gradient-x font-roboto
+            max-sm:px-2 max-sm:py-2"
           >
             <Mail size={18} />
-            Get in Touch
+            <span className="sm:inline hidden">Get in Touch</span>
           </a>
         </div>
       </div>
