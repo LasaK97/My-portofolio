@@ -31,11 +31,11 @@ const ProjectsSection = () => {
     },
     {
       id: 2,
-      title: "AI Robo",
-      description: "An intelligent chatbot platform built with Python and TensorFlow, featuring natural language processing and machine learning capabilities.",
-      image: "/images/projects/chatbot.jpg",
-      githubUrl: "https://github.com/yourusername/chatbot",
-      technologies: ["Python", "PyTorch", "OpenCV", "FastAPI", "Redis", "Docker"]
+      title: "Intelligent Robot Navigation Guidance and Control System",
+      description: "This intelligent robot navigation system uses AI to detect, track, and analyze human positions and arrangements, enabling robots to determine optimal positioning in dynamic environments. By combining computer vision, spatial reasoning, and environmental awareness, the system continuously adapts to evolving human formations, allowing for intuitive robot navigation that respects human spatial contexts.",
+      image: "/images/projects/robot-navi.jpg",
+      githubUrl: "https://github.com/LasaK97/Intelligent-Robot-Navigation-Guidance-and-Control-System",
+      technologies: ["Python", "YOLO", "OpenCV", "ROS", "PyRealsense2", "Gazebo"]
     },
     {
       id: 3,
