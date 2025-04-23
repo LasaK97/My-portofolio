@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       subject: `Portfolio Contact: ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #06b6d4;">New Contact Form Submission</h2>
+          <h2 style="color: #06b6d4;">Mail Form Portofolio Contact Submission</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Subject:</strong> ${subject}</p>

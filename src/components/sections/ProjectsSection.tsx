@@ -44,7 +44,16 @@ const ProjectsSection = () => {
       image: "/images/projects/ai-insurance.png",
       githubUrl: "https://github.com/LasaK97/AI-Powered-Insurance-recommendation-system",
       technologies: ["Python", "PyTorch", "Streamlit", "Scikit-learn", "Scipy", "Plotly"]
-    }
+    },
+    {
+      id: 4,
+      title: "Self Portofolio Website.",
+      description: "This portfolio website showcases my front-end development skills, which complement my primary expertise as a data scientist. While my professional focus is on data analysis, machine learning, and statistical modeling, this project demonstrates my ability to work with modern web technologies.",
+      image: "/images/projects/porto.png",
+      githubUrl: "https://github.com/LasaK97/My-portofolio",
+      technologies: ["Next.js", "Tailwind CSS"]
+    },
+    
   ];
 
   useEffect(() => {
