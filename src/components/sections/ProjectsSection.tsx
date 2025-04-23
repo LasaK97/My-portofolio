@@ -39,11 +39,11 @@ const ProjectsSection = () => {
     },
     {
       id: 3,
-      title: "AI Vision",
-      description: "An intelligent chatbot platform built with Python and TensorFlow, featuring natural language processing and machine learning capabilities.",
-      image: "/images/projects/chatbot.jpg",
-      githubUrl: "https://github.com/yourusername/chatbot",
-      technologies: ["Python", "PyTorch", "OpenCV", "FastAPI", "Redis", "Docker"]
+      title: "AI-Powered Personalized Insurance Recommendation System",
+      description: "This project presents the design and implementation of an AI-powered personalized insurance recommendation system aimed at enhancing the insurance purchasing experience. The system utilizes machine learning models to recommend tailored insurance solutions based on customer profiles and data analysis.",
+      image: "/images/projects/ai-insurance.png",
+      githubUrl: "https://github.com/LasaK97/AI-Powered-Insurance-recommendation-system",
+      technologies: ["Python", "PyTorch", "Streamlit", "Scikit-learn", "Scipy", "Plotly"]
     }
   ];
 
