@@ -23,6 +23,14 @@ const ProjectsSection = () => {
   const projects: Project[] = [
     {
       id: 1,
+      title: "Customer Segmentation Using Cluster Analysis for Amazon Sales Data with Dashboard",
+      description: "This project segments customers based on demographic, geographic, and behavioral attributes using various clustering techniques such as k-means, K-Mode, Gaussian Mixture, Agglomerative, and K-prototype clustering. A dashboard was developed to visualize the identified customer segments.",
+      image: "/images/projects/Customer-segmentation-min.jpg",
+      githubUrl: "https://github.com/LasaK97/Customer_segmentation_project",
+      technologies: ["Python", "Scikit-learn", "Streamlit", "Scipy", "Plotly"]
+    },
+    {
+      id: 2,
       title: "Laptop Price Predictor [Model + Webapp]",
       description: "This project predicts laptop prices based on various features and specifications.",
       image: "/images/projects/laptop_price_predictor.jpeg",
@@ -30,7 +38,7 @@ const ProjectsSection = () => {
       technologies: ["Python", "PyTorch", "Streamlit"]
     },
     {
-      id: 2,
+      id: 3,
       title: "Intelligent Robot Navigation Guidance and Control System",
       description: "This intelligent robot navigation system uses AI to detect, track, and analyze human positions and arrangements, enabling robots to determine optimal positioning in dynamic environments. By combining computer vision, spatial reasoning, and environmental awareness, the system continuously adapts to evolving human formations, allowing for intuitive robot navigation that respects human spatial contexts.",
       image: "/images/projects/robot-navi.jpg",
@@ -38,7 +46,7 @@ const ProjectsSection = () => {
       technologies: ["Python", "YOLO", "OpenCV", "ROS", "PyRealsense2", "Gazebo"]
     },
     {
-      id: 3,
+      id: 4,
       title: "AI-Powered Personalized Insurance Recommendation System",
       description: "This project presents the design and implementation of an AI-powered personalized insurance recommendation system aimed at enhancing the insurance purchasing experience. The system utilizes machine learning models to recommend tailored insurance solutions based on customer profiles and data analysis.",
       image: "/images/projects/ai-insurance.png",
@@ -46,12 +54,28 @@ const ProjectsSection = () => {
       technologies: ["Python", "PyTorch", "Streamlit", "Scikit-learn", "Scipy", "Plotly"]
     },
     {
-      id: 4,
-      title: "Self Portofolio Website.",
+      id: 5,
+      title: "Self Portofolio Website",
       description: "This portfolio website showcases my front-end development skills, which complement my primary expertise as a data scientist. While my professional focus is on data analysis, machine learning, and statistical modeling, this project demonstrates my ability to work with modern web technologies.",
       image: "/images/projects/porto.png",
       githubUrl: "https://github.com/LasaK97/My-portofolio",
       technologies: ["Next.js", "Tailwind CSS"]
+    },
+        {
+      id: 6,
+      title: "Uncovering Health and Economic Patterns: A Factor Analysis of Global Life Expectancy Data",
+      description: "This project applies factor analysis to global health and economic data sourced from WHO and the UN, covering 193 countries between 2000–2015. The objective is to reveal latent variables that explain the complex relationships among 22 health-related indicators, including mortality rates, vaccination coverage, GDP, and more. Through data preprocessing and factor extraction using varimax rotation, five key underlying factors were identified: child mortality, adult mortality, body composition and nutrition, economic status, and vaccination coverage. These insights support more informed health policy analysis, though further refinement is recommended as the model may benefit from additional factors for improved accuracy.",
+      image: "/images/projects/factor.jpg",
+      githubUrl: "https://github.com/LasaK97/Factor-Analysis-for-the-Life-Expectancy-data-using-R",
+      technologies: ["R", "ggplot2", "mice", "psych", "nFactors", "lavaan", "GGally"]
+    },
+        {
+      id: 7,
+      title: "Discovering Relationships Between Physiology and Fitness: A Canonical Correlation Analysis of Body Performance Data",
+      description: "This project applies Canonical Correlation Analysis (CCA) to explore the relationships between physiological characteristics and physical fitness performance using a real-world dataset from the Korean Sports Promotion Foundation. The dataset, sourced from Kaggle, includes health and performance metrics for individuals aged 20 to 64.",
+      image: "/images/projects/cano.png",
+      githubUrl: "https://github.com/LasaK97/Canonical-Correlation-Analysis-using-R",
+      technologies: ["R", "readr", "dplyr", "ggplot2", "MVN", "CCA", "CCP", "tidyr", "corrr", "psych"]
     },
     
   ];
