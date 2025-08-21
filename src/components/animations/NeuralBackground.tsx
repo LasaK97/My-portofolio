@@ -27,12 +27,12 @@ const NeuralBackground: React.FC = () => {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Define particle count based on screen size
+    // Define particle count based on screen size - Reduced for better mobile performance
     const getParticleCount = () => {
       const width = window.innerWidth;
-      if (width < 768) return 50;   // Mobile
-      if (width < 1024) return 70;  // Tablet
-      return 120;                   // Desktop
+      if (width < 768) return 30;   // Mobile - Reduced for performance
+      if (width < 1024) return 50;  // Tablet
+      return 80;                   // Desktop - Optimized
     };
 
     class Particle {
@@ -68,13 +68,11 @@ const NeuralBackground: React.FC = () => {
         
         this.size = this.baseSize;
 
-        // More muted colors with intermediate opacity
+        // Professional 3-color system for consistency
         const colors = [
-          'rgba(6, 182, 212, 0.45)',   // cyan
-          'rgba(59, 130, 246, 0.45)',  // blue
-          'rgba(168, 85, 247, 0.45)',  // purple
-          'rgba(14, 116, 144, 0.45)',  // dark cyan
-          'rgba(37, 99, 235, 0.45)'    // deeper blue
+          'rgba(59, 130, 246, 0.8)',   // professional-blue
+          'rgba(6, 182, 212, 0.7)',    // professional-cyan  
+          'rgba(139, 92, 246, 0.7)',   // professional-purple
         ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
@@ -101,10 +99,33 @@ const NeuralBackground: React.FC = () => {
       }
 
       draw(ctx: CanvasRenderingContext2D) {
+        // Enhanced glow effect for better visibility on dark background
+        ctx.save();
+        
+        // Outer glow ring
+        ctx.shadowBlur = 30;
+        ctx.shadowColor = this.color;
+        ctx.globalAlpha = 0.3;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Middle glow
+        ctx.shadowBlur = 20;
+        ctx.globalAlpha = 0.6;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 1.2, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Core particle - brightest
+        ctx.shadowBlur = 10;
+        ctx.globalAlpha = 1;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
         ctx.fill();
+        
+        ctx.restore();
       }
     }
 
@@ -155,15 +176,22 @@ const NeuralBackground: React.FC = () => {
             gradient.addColorStop(0, p1.color);
             gradient.addColorStop(1, p2.color);
             
-            // More nuanced opacity calculation
-            const opacity = Math.max(0.2, 1 - distance / connectionDistance);
+            // Enhanced connection visibility
+            const opacity = Math.max(0.3, 1 - distance / connectionDistance);
+            
+            // Add shadow/glow to connections
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = p1.color;
             ctx.strokeStyle = gradient;
             
-            // Varying line width based on proximity
-            ctx.lineWidth = Math.max(0.3, (1 - distance / connectionDistance) * 1);
+            // Dynamic line width
+            ctx.lineWidth = Math.max(0.5, (1 - distance / connectionDistance) * 1.5);
             
             ctx.globalAlpha = opacity;
             ctx.stroke();
+            
+            // Reset shadow
+            ctx.shadowBlur = 0;
             ctx.globalAlpha = 1;
           }
         });
@@ -199,8 +227,11 @@ const NeuralBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full -z-10"
-      style={{ background: 'rgb(17, 24, 39)' }}
+      className="fixed inset-0 w-full h-full z-0 pointer-events-none"
+      style={{ 
+        background: 'transparent',
+        mixBlendMode: 'screen' // Makes particles pop against dark background
+      }}
     />
   );
 };

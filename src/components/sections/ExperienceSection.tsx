@@ -62,18 +62,33 @@ const ExperienceSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative min-h-screen py-16">
       <div className="text-center mb-5">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
-        Work Experience
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+        Professional Journey
         </h2>
-        <p className="text-gray-400 mt-2">
-         My journey in the professional front
+        <p className="text-medium-gray mt-2 text-lg">
+         Building AI solutions in the real world
         </p>
       </div>
       {/* Timeline container */}
       <div className="relative max-w-6xl mx-auto px-4">
         {/* Vertical Timeline Line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] transform -translate-x-1/2 hidden lg:block">
-          <div className="h-full bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500 opacity-70" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-[3px] transform -translate-x-1/2 hidden lg:block">
+          <div 
+            className="h-full animate-neural-pulse" 
+            style={{
+              background: 'linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
+              backgroundSize: '100% 200%',
+              animation: 'gradientFlow 4s ease-in-out infinite alternate'
+            }}
+          />
+          <div 
+            className="absolute inset-0 blur-sm opacity-50" 
+            style={{
+              background: 'linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
+              backgroundSize: '100% 200%',
+              animation: 'gradientFlow 4s ease-in-out infinite alternate'
+            }}
+          />
         </div>
 
         {/* Experience Cards */}

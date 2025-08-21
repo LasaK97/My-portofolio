@@ -3,27 +3,27 @@ import { Variants } from 'framer-motion';
 
 export const cardVariants: Variants = {
   hidden: (position: 'left' | 'right') => ({
-    opacity: 0,
-    x: position === 'left' ? -100 : 100,
+    x: position === 'left' ? -80 : 80,
+    scale: 0.9,
     transition: {
-      duration: 0.3,
-      ease: 'easeIn'
+      duration: 0.6,
+      ease: 'easeOut'
     }
   }),
   visible: {
-    opacity: 1,
     x: 0,
+    scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.7,
       ease: 'easeOut'
     }
   },
   exit: (position: 'left' | 'right') => ({
-    opacity: 0,
-    x: position === 'left' ? -100 : 100,
+    x: position === 'left' ? -80 : 80,
+    scale: 0.9,
     transition: {
-      duration: 0.3,
-      ease: 'easeIn'
+      duration: 0.6,
+      ease: 'easeOut'
     }
   })
 };

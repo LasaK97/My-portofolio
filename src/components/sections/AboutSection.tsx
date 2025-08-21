@@ -50,8 +50,8 @@ export const AboutSection = () => {
       className="relative py-12 md:py-16"
     >
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 md:mb-10 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
-          About Me
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 md:mb-10 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+          Neural Genesis
         </h2>
         
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-8">

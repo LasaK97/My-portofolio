@@ -76,14 +76,14 @@ export const ContactSection = () => {
     <section className="min-h-screen relative py-16">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Section Title */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-5 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
-          CONTACT
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-5 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+          Neural Connect
         </h2>
         {/* Subtitle */}
         <div className="text-center mb-8">
-          <p className="text-gray-400 text-center mb-8">
-            Solving complex problems with AI & data. {" "}
-            <span className="text-cyan-400 underline cursor-pointer font-orbitron">
+          <p className="text-medium-gray text-center mb-8 text-lg">
+            Ready to build the future with AI? {" "}
+            <span className="text-neon-orange underline cursor-pointer font-orbitron animate-pulse">
               Let&apos;s connect!
             </span>
           </p>
@@ -91,25 +91,25 @@ export const ContactSection = () => {
         
         {/* Contact Info */}
         <div className="flex flex-col items-center gap-4 mb-10">
-          <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors">
-            <span className="text-cyan-400">
-              <Phone className="w-4 h-4" />
+          <a href={`tel:${contactInfo.phone}`} className="flex items-center gap-4 text-off-white hover:text-neon-orange transition-all duration-300 p-3 rounded-lg glassmorphism hover:border-neon-orange/50 border border-transparent">
+            <span className="text-neon-orange p-2 rounded-full bg-neon-orange/10">
+              <Phone className="w-5 h-5" />
             </span>
-            <span>{contactInfo.phone}</span>
+            <span className="font-medium">{contactInfo.phone}</span>
           </a>
           
-          <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors">
-            <span className="text-cyan-400">
-              <Mail className="w-4 h-4" />
+          <a href={`mailto:${contactInfo.email}`} className="flex items-center gap-4 text-off-white hover:text-cyber-cyan transition-all duration-300 p-3 rounded-lg glassmorphism hover:border-cyber-cyan/50 border border-transparent">
+            <span className="text-cyber-cyan p-2 rounded-full bg-cyber-cyan/10">
+              <Mail className="w-5 h-5" />
             </span>
-            <span>{contactInfo.email}</span>
+            <span className="font-medium">{contactInfo.email}</span>
           </a>
           
-          <a href={`https://maps.google.com/?q=${encodeURIComponent(contactInfo.location)}`} className="flex items-center gap-3 text-gray-300 hover:text-cyan-400 transition-colors">
-            <span className="text-cyan-400">
-              <MapPin className="w-4 h-4" />
+          <a href={`https://maps.google.com/?q=${encodeURIComponent(contactInfo.location)}`} className="flex items-center gap-4 text-off-white hover:text-neon-purple transition-all duration-300 p-3 rounded-lg glassmorphism hover:border-neon-purple/50 border border-transparent">
+            <span className="text-neon-purple p-2 rounded-full bg-neon-purple/10">
+              <MapPin className="w-5 h-5" />
             </span>
-            <span>{contactInfo.location}</span>
+            <span className="font-medium">{contactInfo.location}</span>
           </a>
         </div>
 
@@ -118,14 +118,14 @@ export const ContactSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Name Input */}
             <div className="relative">
-              <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded exp-gradient-rotate" />
+              <div className="absolute -inset-[1px] bg-gradient-to-r from-neon-orange via-neon-purple to-cyber-cyan rounded animate-gradient-x" />
               <input
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Neural Identity"
                 value={formData.name}
                 onChange={handleChange}
-                className="relative w-full p-3 bg-[#0f172a] rounded text-gray-300 focus:outline-none"
+                className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-neon-orange/50 placeholder-medium-gray font-medium"
                 required
                 disabled={isSubmitting}
               />
@@ -133,14 +133,14 @@ export const ContactSection = () => {
 
             {/* Email Input */}
             <div className="relative">
-              <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded exp-gradient-rotate" />
+              <div className="absolute -inset-[1px] bg-gradient-to-r from-cyber-cyan via-neon-purple to-hot-pink rounded animate-gradient-x" />
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Neural Network Address"
                 value={formData.email}
                 onChange={handleChange}
-                className="relative w-full p-3 bg-[#0f172a] rounded text-gray-300 focus:outline-none"
+                className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-cyber-cyan/50 placeholder-medium-gray font-medium"
                 required
                 disabled={isSubmitting}
               />
@@ -149,14 +149,14 @@ export const ContactSection = () => {
 
           {/* Subject Input */}
           <div className="relative">
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded exp-gradient-rotate" />
+            <div className="absolute -inset-[1px] bg-gradient-to-r from-hot-pink via-neon-orange to-lime-green rounded animate-gradient-x" />
             <input
               type="text"
               name="subject"
-              placeholder="Subject"
+              placeholder="Mission Protocol"
               value={formData.subject}
               onChange={handleChange}
-              className="relative w-full p-3 bg-[#0f172a] rounded text-gray-300 focus:outline-none"
+              className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-hot-pink/50 placeholder-medium-gray font-medium"
               required
               disabled={isSubmitting}
             />
@@ -164,13 +164,13 @@ export const ContactSection = () => {
 
           {/* Message Input */}
           <div className="relative">
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded exp-gradient-rotate" />
+            <div className="absolute -inset-[1px] bg-gradient-to-r from-neon-purple via-cyber-cyan to-neon-orange rounded animate-gradient-x" />
             <textarea
               name="message"
-              placeholder="Message"
+              placeholder="Neural Transmission Data"
               value={formData.message}
               onChange={handleChange}
-              className="relative w-full p-3 bg-[#0f172a] rounded text-gray-300 focus:outline-none min-h-[150px] resize-none"
+              className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-neon-purple/50 min-h-[150px] resize-none placeholder-medium-gray font-medium"
               required
               disabled={isSubmitting}
             />
@@ -178,7 +178,7 @@ export const ContactSection = () => {
 
           {/* Error message */}
           {submitError && (
-            <div className="text-red-500 text-center">{submitError}</div>
+            <div className="text-hot-pink text-center font-medium bg-hot-pink/10 p-3 rounded-lg border border-hot-pink/30">{submitError}</div>
           )}
 
           {/* Submit Button */}
@@ -186,19 +186,23 @@ export const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="relative bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-6 py-2 rounded-lg 
-              hover:from-purple-600 hover:to-cyan-600 transition-all duration-300 
-              shadow-lg hover:shadow-purple-500/50 flex items-center gap-2 animate-gradient-x"
+              className="relative bg-gradient-to-r from-neon-orange to-hot-pink text-void-black px-8 py-4 rounded-lg font-bold font-orbitron tracking-wide
+              hover:from-electric-orange hover:to-hot-pink transition-all duration-300 transform hover:scale-105
+              shadow-lg shadow-neon-orange/25 hover:shadow-xl hover:shadow-neon-orange/40 flex items-center gap-3 animate-gradient-x
+              border-2 border-neon-orange/50 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
-                <Loader className="w-5 h-5 animate-spin" />
+                <>
+                  <Loader className="w-6 h-6 animate-spin" />
+                  NEURAL PROCESSING...
+                </>
               ) : showSuccess ? (
                 <>
-                  <Check className="w-5 h-5" />
-                  Sent!
+                  <Check className="w-6 h-6 text-lime-green" />
+                  TRANSMISSION COMPLETE!
                 </>
               ) : (
-                'Submit'
+                'INITIATE NEURAL LINK'
               )}
             </button>
           </div>

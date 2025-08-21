@@ -1,18 +1,40 @@
 // src/components/sections/skills/SkillCircle.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { SkillCircleProps } from '@/types/skills';
 
-const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay, index }) => {
+const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay, index, isVisible = false }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showPercentage, setShowPercentage] = useState(false);
+  const [flipInterval, setFlipInterval] = useState<NodeJS.Timeout | null>(null);
   const circleSize = 70;
   const strokeWidth = 3;
   const radius = (circleSize - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
+
+  // Randomized flip timing
+  useEffect(() => {
+    const randomInterval = 2000 + Math.random() * 3000 + (index * 200); // 2-5 seconds + stagger
+    const interval = setInterval(() => {
+      setShowPercentage(prev => !prev);
+    }, randomInterval);
+    setFlipInterval(interval);
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [index]);
+
+  // Cleanup interval
+  useEffect(() => {
+    return () => {
+      if (flipInterval) clearInterval(flipInterval);
+    };
+  }, [flipInterval]);
 
   return (
     <div 
@@ -22,23 +44,23 @@ const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={{ opacity: 1, scale: isHovered ? 1.05 : 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3, delay }}
-        className="relative cursor-pointer"
+        className="relative cursor-pointer hover:drop-shadow-lg"
       >
         <svg 
           width={circleSize} 
           height={circleSize} 
           className="transform -rotate-90"
         >
-          {/* Background circle */}
+          {/* Background circle - Neural cyberpunk style */}
           <circle
             cx={circleSize / 2}
             cy={circleSize / 2}
             r={radius}
             fill="transparent"
-            stroke="rgba(6, 182, 212, 0.1)"
+            stroke="rgba(59, 130, 246, 0.3)"
             strokeWidth={strokeWidth}
           />
           
@@ -48,48 +70,35 @@ const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay
             cy={circleSize / 2}
             r={radius}
             fill="transparent"
-            stroke={`url(#gradient-${index})`}
+            stroke="#3b82f6"
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             initial={{ strokeDashoffset: circumference }}
-            animate={{ strokeDashoffset: offset }}
-            transition={{ duration: 1.5, delay }}
+            animate={{ 
+              strokeDashoffset: isVisible ? offset : circumference 
+            }}
+            transition={{ duration: 1.5, delay: isVisible ? delay : 0 }}
           />
-
-          {/* Animated gradient */}
-          <defs>
-            <linearGradient 
-              id={`gradient-${index}`}
-              x1="0%" 
-              y1="0%" 
-              x2="100%" 
-              y2="0%"
-            >
-              <stop offset="0%" stopColor="#06b6d4">
-                <animate
-                  attributeName="stop-color"
-                  values="#06b6d4; #3b82f6; #a855f7; #06b6d4"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-              <stop offset="100%" stopColor="#3b82f6">
-                <animate
-                  attributeName="stop-color"
-                  values="#3b82f6; #a855f7; #06b6d4; #3b82f6"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </stop>
-            </linearGradient>
-          </defs>
         </svg>
 
-        {/* Skill Logo and Percentage overlay */}
+        {/* Flip Content - Icon OR Percentage (not both) */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-10 h-10 flex items-center justify-center">
-            {!isHovered ? (
-              <div className="relative w-full h-full">
+          <motion.div
+            key={showPercentage || isHovered ? 'percentage' : 'icon'}
+            initial={{ rotateY: 90, opacity: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
+            exit={{ rotateY: -90, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center justify-center"
+          >
+            {(showPercentage || isHovered) ? (
+              // Show Percentage
+              <div className="text-lg font-bold text-blue-400">
+                {percentage}%
+              </div>
+            ) : (
+              // Show Icon
+              <div className="relative w-10 h-10 flex items-center justify-center">
                 <Image
                   src={logo}
                   alt={name}
@@ -98,21 +107,22 @@ const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay
                   sizes="40px"
                 />
               </div>
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 rounded-full">
-                <span className="text-sm font-bold text-cyan-400">
-                  {percentage}%
-                </span>
-              </div>
             )}
-          </div>
+          </motion.div>
         </div>
       </motion.div>
 
       {/* Skill Name */}
-      <span className="mt-2 text-xs text-gray-400 whitespace-nowrap">
+      <motion.span 
+        className="mt-3 text-xs whitespace-nowrap font-medium transition-all duration-300"
+        animate={{
+          color: isHovered ? '#3b82f6' : '#9e9ea7',
+          scale: isHovered ? 1.05 : 1,
+          y: isHovered ? -2 : 0
+        }}
+      >
         {name}
-      </span>
+      </motion.span>
     </div>
   );
 };

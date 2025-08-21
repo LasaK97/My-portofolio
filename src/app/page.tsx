@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { TypingAnimation } from '../components/animations/TypingAnimation';
 import { FaceDetection } from '../components/animations/FaceDetection';
+import NeuralBackground from '../components/animations/NeuralBackground';
 import { Navigation } from '../components/common/Navigation';
 import { Header } from '../components/common/Header';
 import { AboutSection } from '../components/sections/AboutSection';
@@ -23,35 +24,68 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Header />
-      <Navigation />
+    <div className="min-h-screen bg-void-black relative">
+      <NeuralBackground />
+      <div className="relative z-10">
+        <Header />
+        <Navigation />
 
       {/* Home Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center">
-        <div className="w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-center lg:gap-8">
-          {/* Left side - Smaller Image */}
-          <div className="lg:w-5/12 flex justify-end pr-4">
-            <div className="relative w-64 h-64 md:w-72 md:h-72">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg animate-" />
-              <div className="absolute inset-2 rounded-lg overflow-hidden">
-                <div className="relative w-full h-full">
+      <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-16 md:pt-20">
+        {/* Background Grid Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 107, 53, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+            {/* Left side - Profile Image */}
+            <div className="lg:w-5/12 flex justify-center lg:justify-start">
+              <div className="relative group">
+                {/* Animated border container */}
+                <div className="absolute inset-0 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-2xl animate-gradient-x" />
+                <div className="absolute inset-0 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-2xl animate-gradient-x blur-xl opacity-50" />
+                
+                {/* Image container */}
+                <div className="relative m-1 bg-charcoal rounded-2xl overflow-hidden w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
                   <Image
                     src="/images/profile.jpg"
-                    alt="Profile"
+                    alt="Lasantha Kulasooriya - AI Engineer"
                     fill
-                    className="object-cover z-0"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                     priority
                   />
                   <FaceDetection isActive={showAnimation} />
+                  
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-void-black/50 via-transparent to-transparent" />
                 </div>
+                
+                {/* Floating elements - Hidden on small mobile */}
+                <div className="hidden sm:block absolute -top-4 -right-4 w-6 h-6 md:w-8 md:h-8 bg-neon-orange rounded-full animate-neural-pulse" />
+                <div className="hidden sm:block absolute -bottom-4 -left-4 w-4 h-4 md:w-6 md:h-6 bg-cyber-cyan rounded-full animate-float" />
               </div>
             </div>
-          </div>
 
-          {/* Right side - Text */}
-          <div className="lg:w-7/12 lg:pl-4 pt-6 lg:pt-0">
-            <TypingAnimation />
+            {/* Right side - Content */}
+            <div className="lg:w-7/12 text-center lg:text-left">
+              <TypingAnimation />
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-medium-gray animate-bounce">
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs uppercase tracking-wide">Scroll to explore</span>
+            <div className="w-px h-8 bg-gradient-to-b from-neon-orange to-transparent" />
           </div>
         </div>
       </section>
@@ -85,6 +119,7 @@ export default function Home() {
       <section id="contact" className="relative min-h-screen">
         <ContactSection />
       </section>
+      </div>
     </div>
   );
 }

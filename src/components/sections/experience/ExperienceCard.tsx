@@ -23,23 +23,25 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, position, o
       onAnimationComplete={onInView}
     >
       <div className="relative">
-        {/* Gradient Border */}
-        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 exp-gradient-rotate" />
-        <div className="relative m-[2px] bg-gray-900/90 backdrop-blur-sm p-4 rounded-lg">
+        {/* 15% transparency gradient border */}
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
+        {/* 15% transparency glass card */}
+        <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
           {/* Title and Company */}
           <h3 className="flex flex-col lg:flex-row items-baseline gap-2 lg:gap-3 text-lg">
-            <span className="font-bold text-cyan-400">{experience.title}</span>
+            <span className="font-bold text-neon-orange font-orbitron">{experience.title}</span>
             
           </h3>
-          {/* <span className="text-gray-400 hidden lg:inline">|</span> */}
-          <span className="text-gray-300">{experience.company}</span>
+          <span className="text-cyber-cyan text-lg font-medium">{experience.company}</span>
           {/* Duration */}
-          <p className="text-gray-400 text-sm flex items-center mt-1 mb-1">
-            <Calendar size={14} className='mr-1' />
-            {experience.duration}</p>
+          <p className="text-hot-pink text-sm flex items-center mt-2 mb-3 font-medium">
+            <Calendar size={14} className='mr-2' />
+            {experience.duration}
+          </p>
           
           {/* Description */}
-          <p className="text-gray-300 mt-1 text-xs leading-relaxed text-justify">{experience.description}</p>
+          <p className="text-light-gray mt-3 text-sm leading-relaxed">{experience.description}</p>
         </div>
       </div>
       
@@ -50,7 +52,10 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, position, o
           [position === 'left' ? 'right' : 'left']: '0',
           width: '2rem',
           height: '2px',
-          background: 'linear-gradient(to right, rgb(6 182 212), rgb(59 130 246))'
+          background: 'linear-gradient(90deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
+          backgroundSize: '200% 100%',
+          animation: 'gradientFlowHorizontal 3s ease-in-out infinite alternate',
+          boxShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)'
         }}
         variants={connectingLineVariants}
         custom={position}

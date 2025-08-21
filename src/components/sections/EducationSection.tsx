@@ -32,11 +32,11 @@ const EducationSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative min-h-screen py-16">
       <div className="text-center mb-16">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
-          Education
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+          Neural Academy
         </h2>
-        <p className="text-gray-400 mt-2">
-          My academic achievements
+        <p className="text-medium-gray mt-2 text-lg">
+          Foundation of AI expertise through academic excellence
         </p>
       </div>
 
@@ -53,10 +53,10 @@ const EducationSection: React.FC = () => {
               <div key={edu.id} className="relative">
                 {/* Card */}
                 <motion.div
-  initial={{ opacity: 0, y: 100 }}
+  initial={{ y: 100, scale: 0.9 }}
   whileInView={{ 
-    opacity: 1, 
     y: 0,
+    scale: 1,
     transition: {
       type: "spring",
       bounce: 0.2,      // Reduced bounce
@@ -66,8 +66,8 @@ const EducationSection: React.FC = () => {
   }}
   viewport={{ once: false }}
   exit={{ 
-    opacity: 0, 
     y: -100,
+    scale: 0.9,
     transition: {
       duration: 0.5    // Increased exit duration
     }
@@ -84,13 +84,16 @@ const EducationSection: React.FC = () => {
                 <div className="hidden md:block absolute top--5bottom-0 left-1/2 -translate-x-1/2">
                   {/* Connecting Line */}
                   <motion.div
-                    initial={{ opacity: 0, scaleY: 0 }}
-                    whileInView={{ opacity: 1, scaleY: 1 }}
-                    exit={{ opacity: 0, scaleY: 0 }}
+                    initial={{ scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    exit={{ scaleY: 0 }}
                     transition={{ duration: 0.3 }}
                     className="absolute top-[-5rem] left-1/2 w-[2px] h-16 -translate-x-1/2 origin-top"
                     style={{
-                      background: 'linear-gradient(to bottom, rgb(6 182 212), rgb(59 130 246))'
+                      background: 'linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
+                      backgroundSize: '100% 200%',
+                      animation: 'gradientFlow 3s ease-in-out infinite alternate',
+                      boxShadow: '0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.4)'
                     }}
                   />
                   

@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, PanInfo } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
 interface Project {
@@ -89,6 +89,9 @@ const ProjectsSection = () => {
     
   ];
 
+  const [direction, setDirection] = useState(0);
+  const dragX = useMotionValue(0);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -126,19 +129,82 @@ const ProjectsSection = () => {
   }, [currentIndex, isVisible, projects.length]);
 
   const nextSlide = () => {
+    setDirection(1);
     setCurrentIndex((prevIndex) => 
       prevIndex === projects.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
+    setDirection(-1);
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1
     );
   };
 
+  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const threshold = 50;
+    if (info.offset.x > threshold) {
+      prevSlide();
+    } else if (info.offset.x < -threshold) {
+      nextSlide();
+    }
+  };
+
   const handleDotClick = (index: number) => {
+    if (index > currentIndex) {
+      setDirection(1);
+    } else if (index < currentIndex) {
+      setDirection(-1);
+    }
     setCurrentIndex(index);
+  };
+
+  // Simple professional slide animation variants
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  const swipeConfidenceThreshold = 8000; // Reduced for better mobile sensitivity
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  // Mobile-optimized thresholds
+  const getMobileThreshold = () => {
+    return window.innerWidth < 768 ? 30 : 50; // Lower threshold for mobile
+  };
+
+  const handleDragEndWithSwipe = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const { offset, velocity } = info;
+    const swipe = swipePower(offset.x, velocity.x);
+    const threshold = getMobileThreshold();
+
+    // Check for fast swipes first (velocity-based)
+    if (swipe < -swipeConfidenceThreshold) {
+      nextSlide();
+    } else if (swipe > swipeConfidenceThreshold) {
+      prevSlide();
+    } else if (Math.abs(offset.x) > threshold) {
+      // Then check for slower but significant movements (distance-based)
+      if (offset.x > threshold) {
+        prevSlide();
+      } else if (offset.x < -threshold) {
+        nextSlide();
+      }
+    }
+    // If neither condition is met, the card snaps back to center
   };
 
   return (
@@ -148,117 +214,166 @@ const ProjectsSection = () => {
       className="min-h-screen py-16 relative"
     >
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-        exit={{ opacity: 0, y: -50 }}
-        transition={{ duration: 0.5 }}
+        initial={{ y: 50, scale: 0.95 }}
+        animate={{ y: isVisible ? 0 : 50, scale: isVisible ? 1 : 0.95 }}
+        exit={{ y: -50, scale: 0.95 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="container mx-auto px-4"
       >
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
           Projects
         </h2>
-        <p className="text-gray-400 text-center mb-8">
-          My independent projects & contributions
+        <p className="text-medium-gray text-center mb-8 text-lg">
+          My AI & ML innovations in action
         </p>
 
         {/* Projects Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Navigation Arrows */}
-          <button
+        <div className="relative max-w-4xl mx-auto mb-16">
+          {/* Navigation Arrows - Fixed position */}
+          <motion.button
             onClick={prevSlide}
-            className="absolute -left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyan-500 transition-colors z-10"
+            className="absolute -left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10"
+            whileHover={{ 
+              color: "#06b6d4",
+              scale: 1.1
+            }}
+            whileTap={{ 
+              scale: 0.9
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 25
+            }}
           >
             <ChevronLeft size={32} />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={nextSlide}
-            className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyan-500 transition-colors z-10"
+            className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10"
+            whileHover={{ 
+              color: "#06b6d4",
+              scale: 1.1
+            }}
+            whileTap={{ 
+              scale: 0.9
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 25
+            }}
           >
             <ChevronRight size={32} />
-          </button>
+          </motion.button>
 
           {/* Project Card */}
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.3 }}
-              className="relative"
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { duration: 0.5, ease: "easeInOut" },
+                opacity: { duration: 0.3 }
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.3}
+              onDragEnd={handleDragEndWithSwipe}
+              className="relative cursor-grab active:cursor-grabbing w-full"
+              style={{ touchAction: 'pan-y' }}
             >
-              {/* Gradient Border */}
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 exp-gradient-rotate" />
-              <div className="relative m-[2px] bg-gray-900/90 backdrop-blur-sm p-4 rounded-lg">
-                <div className="flex flex-col md:flex-row items-stretch">
-                  {/* Project Image */}
-                  <div className="md:w-1/2 relative aspect-[16/9] md:aspect-[4/3] rounded-lg overflow-hidden">
-                    <Image
-                      src={projects[currentIndex].image}
-                      alt={projects[currentIndex].title}
-                      fill
-                      className="object-cover"
-                    />
+            {/* 15% transparency gradient border */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
+            {/* 15% transparency glass card */}
+            <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
+              <div className="flex flex-col md:flex-row items-stretch">
+                {/* Project Image */}
+                <div className="md:w-1/2 relative aspect-[16/9] md:aspect-[4/3] rounded-lg overflow-hidden">
+                  <Image
+                    src={projects[currentIndex].image}
+                    alt={projects[currentIndex].title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Project Info */}
+                <div className="md:w-1/2 p-4 md:p-6 flex flex-col">
+                  <h3 className="flex flex-col lg:flex-row items-baseline gap-2 lg:gap-3 text-lg">
+                    <span className="font-bold text-neon-orange font-orbitron">{projects[currentIndex].title}</span>
+                  </h3>
+                  <p className="text-off-white text-sm mt-3 leading-relaxed">
+                    {projects[currentIndex].description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {projects[currentIndex].technologies.map((tech, index) => (
+                      <span 
+                        key={index}
+                        className="text-xs px-3 py-1 rounded-full glassmorphism text-cyber-cyan border border-cyber-cyan/30 hover:border-neon-orange/50 transition-all duration-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
 
-                  {/* Project Info */}
-                  <div className="md:w-1/2 p-4 md:p-6 flex flex-col">
-                    <h3 className="flex flex-col lg:flex-row items-baseline gap-2 lg:gap-3 text-lg">
-                      <span className="font-bold text-cyan-400">{projects[currentIndex].title}</span>
-                    </h3>
-                    <p className="text-gray-300 text-sm mt-3">
-                      {projects[currentIndex].description}
-                    </p>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {projects[currentIndex].technologies.map((tech, index) => (
-                        <span 
-                          key={index}
-                          className="text-sm px-3 py-1 rounded-full bg-gray-800/50 text-purple-400 backdrop-blur-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    
-                    <a  href={projects[currentIndex].githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-4 py-2 rounded-lg
-                              hover:from-purple-600 hover:to-cyan-600 transition-all duration-300 
-                              shadow-lg hover:shadow-purple-500/25 flex items-center gap-2 animate-gradient-x mt-4 w-fit"
-                    >
-                      <ExternalLink size={16} />
-                      View Project
-                    </a>
-                  </div>
+                  
+                  <a  href={projects[currentIndex].githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gradient-to-r from-neon-orange to-hot-pink text-void-black px-6 py-3 rounded-lg font-semibold
+                            hover:from-electric-orange hover:to-hot-pink transition-all duration-300 
+                            shadow-lg shadow-neon-orange/25 hover:shadow-xl hover:shadow-neon-orange/40 
+                            flex items-center gap-2 mt-4 w-fit font-orbitron tracking-wide
+                            border-2 border-neon-orange/50 hover:scale-105 transform"
+                  >
+                    <ExternalLink size={16} />
+                    Explore Project
+                  </a>
                 </div>
               </div>
+            </div>
             </motion.div>
           </AnimatePresence>
+        </div>
 
-          {/* Dots Navigation */}
-          <div className="flex justify-center space-x-2 mt-6">
+        {/* Dots Navigation - Fixed to page bottom with consistent gap */}
+        <div className="flex justify-center space-x-2">
             {projects.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => handleDotClick(index)}
                 className="relative"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <div
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 
+                <motion.div
+                  className={`w-3 h-3 rounded-full transition-all duration-300 border-2
                     ${index === currentIndex 
-                      ? 'bg-cyan-500' 
-                      : 'bg-gray-600 hover:bg-gray-500'}`}
+                      ? 'bg-cyber-cyan border-cyber-cyan shadow-lg shadow-cyber-cyan/50' 
+                      : 'bg-transparent border-medium-gray hover:border-cyber-cyan'}`}
+                  whileHover={index !== currentIndex ? {
+                    borderColor: "#06b6d4",
+                    boxShadow: "0 0 10px rgba(6, 182, 212, 0.3)"
+                  } : {}}
                 />
                 {index === currentIndex && (
-                  <div className="absolute inset-0 rounded-full bg-cyan-500 animate-ping" />
+                  <motion.div 
+                    className="absolute inset-0 rounded-full bg-cyber-cyan opacity-50"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
                 )}
-              </button>
+              </motion.button>
             ))}
-          </div>
         </div>
       </motion.div>
     </section>

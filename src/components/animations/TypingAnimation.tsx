@@ -2,6 +2,9 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { Download, Sparkles, ArrowRight } from 'lucide-react';
+import CyberButton from '../ui/CyberButton';
 
 export const TypingAnimation = () => {
   const [name, setName] = useState('');
@@ -13,11 +16,11 @@ export const TypingAnimation = () => {
 
   const fullName = "Lasantha Kulasooriya";
   const phrases = useMemo(() =>[
-    "🚀 I am a Data Scientist & AI Engineer.",
-    "💡 I turn data into intelligent solutions.",
-    "📊 I love discovering patterns in data.",
-    "🤖 I build and optimize AI models.",
-    "💻 I enjoy coding and solving complex problems."
+    "I am a Data Scientist & AI Engineer.",
+    "I turn data into intelligent solutions.",
+    "I discover meaningful patterns in data.",
+    "I build and optimize AI models.",
+    "I solve complex problems through code."
 ],[]);
 
 
@@ -99,40 +102,85 @@ export const TypingAnimation = () => {
   return (
     <div className="space-y-3">
       {/* Name */}
-      <h1 className="text-4xl md:text-6xl font-bold">
-        <span className="bg-gradient-to-r from-purple-500 via-cyan-500 to-blue-500 bg-clip-text text-transparent">
+      <h1 className="text-4xl md:text-6xl font-bold font-orbitron">
+        <span className="text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text">
           {name}
         </span>
-        <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-cyan-500`}>|</span>
+        <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-primary-accent animate-neural-pulse`}>|</span>
       </h1>
       
       {/* Dynamic Text */}
       <div className="h-14">
-        <p className="text-xl md:text-2xl text-gray-300">
+        <p className="text-xl md:text-2xl text-off-white font-medium">
           {text}
-          <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-cyan-500`}>|</span>
+          <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} text-secondary-accent animate-neural-pulse`}>|</span>
         </p>
       </div>
 
-      {/* Keywords Grid */}
-      <div className="grid grid-cols-3 md:grid-cols-4 gap-3 mt-4">
+      {/* Professional Skill Tags */}
+      <div className="flex flex-wrap gap-2 mt-6 justify-center">
         {techWords.map((word, index) => (
-          <div
+          <motion.div
             key={word}
-            className={`transition-all duration-700 text-center
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05 }}
+            className={`px-3 py-1 rounded-full text-sm transition-all duration-500 cursor-default
               ${index === activeWordIndex 
-                ? 'scale-125 text-cyan-400 font-medium' 
-                : 'scale-100 text-gray-400'
+                ? 'bg-primary-accent/20 text-primary-accent border border-primary-accent/40 shadow-lg' 
+                : 'bg-white/5 text-medium-gray border border-white/10'
               }
-              hover:text-cyan-300 cursor-default
+              hover:bg-secondary-accent/10 hover:text-secondary-accent hover:border-secondary-accent/30
             `}
           >
-            <span className="text-sm md:text-base whitespace-nowrap">
-              {word}
-            </span>
-          </div>
+            {word}
+          </motion.div>
         ))}
       </div>
+
+      {/* Action Buttons */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+        className="flex flex-col sm:flex-row gap-4 mt-8"
+      >
+        <CyberButton 
+          variant="primary" 
+          size="lg"
+          icon={<Sparkles size={20} />}
+          className="group"
+          onClick={() => {
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+              projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+        >
+          Explore AI Projects
+          <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+        </CyberButton>
+        
+        <CyberButton 
+          variant="secondary" 
+          size="lg"
+          icon={<Download size={20} />}
+          href="/resume/Lasantha_Kulasooriya_Resume.pdf"
+        >
+          Download Resume
+        </CyberButton>
+      </motion.div>
+
+      {/* Status Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="flex items-center gap-2 mt-6 text-sm text-medium-gray"
+      >
+        <div className="w-2 h-2 bg-green-400 rounded-full animate-neural-pulse" />
+        <span>Available for AI/ML opportunities</span>
+      </motion.div>
     </div>
   );
 };

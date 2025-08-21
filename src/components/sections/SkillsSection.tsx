@@ -149,14 +149,14 @@ const SkillsSection = () => {
   // Animation variants for the floating effect
   const floatLeftVariants = {
     hidden: { 
-      x: -100, 
-      opacity: 0 
+      x: -80, 
+      scale: 0.9
     },
     visible: (index: number) => ({ 
       x: 0, 
-      opacity: 1,
+      scale: 1,
       transition: { 
-        duration: 0.5, 
+        duration: 0.7, 
         delay: index * 0.1,
         ease: "easeOut"
       } 
@@ -165,14 +165,14 @@ const SkillsSection = () => {
 
   const floatRightVariants = {
     hidden: { 
-      x: 100, 
-      opacity: 0 
+      x: 80, 
+      scale: 0.9
     },
     visible: (index: number) => ({ 
       x: 0, 
-      opacity: 1,
+      scale: 1,
       transition: { 
-        duration: 0.5, 
+        duration: 0.7, 
         delay: index * 0.1,
         ease: "easeOut"
       } 
@@ -182,11 +182,11 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="min-h-screen py-16 relative" ref={sectionRef}>
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
-          Skills
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+          Technical Arsenal
         </h2>
-        <p className="text-gray-400 text-center mb-6">
-          Technical expertise & proficiency
+        <p className="text-medium-gray text-center mb-6 text-lg">
+          AI/ML expertise & cutting-edge technologies
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -204,41 +204,45 @@ const SkillsSection = () => {
                 onClick={() => toggleCategory(category.id)}
                 className="relative cursor-pointer"
               >
-                {/* Gradient Border */}
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 exp-gradient-rotate" />
-                <div className="relative m-[2px] bg-gray-900/90 backdrop-blur-sm p-4 rounded-lg">
+                {/* 15% transparency gradient border */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
+                {/* 15% transparency glass card */}
+                <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <category.icon className="w-6 h-6 text-cyan-400" />
+                      <category.icon className="w-7 h-7 text-neon-orange" />
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-200">
+                        <h3 className="text-xl font-bold text-off-white font-orbitron">
                           {category.title}
                         </h3>
-                        <p className="text-sm text-gray-400">{category.experience}</p>
+                        <p className="text-sm text-secondary-accent font-medium">{category.experience}</p>
                       </div>
                     </div>
                     <ChevronDown 
-                      className={`w-5 h-5 text-cyan-400 transition-transform duration-300
-                        ${expandedCategory === category.id ? 'rotate-180' : ''}`}
+                      className={`w-6 h-6 text-neon-orange transition-all duration-500 ${
+                        expandedCategory === category.id ? 'rotate-180' : 'rotate-0 hover:scale-110'
+                      }`}
                     />
                   </div>
 
                   <AnimatePresence>
                     {expandedCategory === category.id && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ height: 0 }}
+                        animate={{ height: 'auto' }}
+                        exit={{ height: 0 }}
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-6 pt-4 border-t border-gray-800/50">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 mt-6 pt-4 border-t border-neon-orange/20">
                           {category.skills.map((skill, index) => (
                             <SkillCircle
                               key={skill.name}
                               {...skill}
                               delay={index * 0.1}
                               index={index}
+                              isVisible={expandedCategory === category.id}
                             />
                           ))}
                         </div>

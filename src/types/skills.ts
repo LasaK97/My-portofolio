@@ -16,4 +16,5 @@ export interface Skill {
     percentage: number;
     delay: number;
     index: number;
+    isVisible?: boolean;
   }
