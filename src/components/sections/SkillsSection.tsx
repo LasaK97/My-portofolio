@@ -182,10 +182,10 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="min-h-screen py-16 relative" ref={sectionRef}>
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
           Technical Arsenal
         </h2>
-        <p className="text-medium-gray text-center mb-6 text-lg">
+        <p className="text-medium-gray text-center mb-24 text-lg">
           AI/ML expertise & cutting-edge technologies
         </p>
 

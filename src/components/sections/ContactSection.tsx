@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Check, Loader } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -76,12 +77,12 @@ export const ContactSection = () => {
     <section className="min-h-screen relative py-16">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Section Title */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-5 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-5 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
           Neural Connect
         </h2>
         {/* Subtitle */}
-        <div className="text-center mb-8">
-          <p className="text-medium-gray text-center mb-8 text-lg">
+        <div className="text-center mb-24">
+          <p className="text-medium-gray text-center text-lg">
             Ready to build the future with AI? {" "}
             <span className="text-neon-orange underline cursor-pointer font-orbitron animate-pulse">
               Let&apos;s connect!
@@ -122,7 +123,7 @@ export const ContactSection = () => {
               <input
                 type="text"
                 name="name"
-                placeholder="Neural Identity"
+                placeholder="Name"
                 value={formData.name}
                 onChange={handleChange}
                 className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-neon-orange/50 placeholder-medium-gray font-medium"
@@ -137,7 +138,7 @@ export const ContactSection = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Neural Network Address"
+                placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
                 className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-cyber-cyan/50 placeholder-medium-gray font-medium"
@@ -153,7 +154,7 @@ export const ContactSection = () => {
             <input
               type="text"
               name="subject"
-              placeholder="Mission Protocol"
+              placeholder="Subject"
               value={formData.subject}
               onChange={handleChange}
               className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-hot-pink/50 placeholder-medium-gray font-medium"
@@ -167,7 +168,7 @@ export const ContactSection = () => {
             <div className="absolute -inset-[1px] bg-gradient-to-r from-neon-purple via-cyber-cyan to-neon-orange rounded animate-gradient-x" />
             <textarea
               name="message"
-              placeholder="Neural Transmission Data"
+              placeholder="Message"
               value={formData.message}
               onChange={handleChange}
               className="relative w-full p-4 bg-charcoal rounded text-off-white focus:outline-none focus:ring-2 focus:ring-neon-purple/50 min-h-[150px] resize-none placeholder-medium-gray font-medium"
@@ -183,28 +184,36 @@ export const ContactSection = () => {
 
           {/* Submit Button */}
           <div className="flex justify-center">
-            <button
+            <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="relative bg-gradient-to-r from-neon-orange to-hot-pink text-void-black px-8 py-4 rounded-lg font-bold font-orbitron tracking-wide
-              hover:from-electric-orange hover:to-hot-pink transition-all duration-300 transform hover:scale-105
-              shadow-lg shadow-neon-orange/25 hover:shadow-xl hover:shadow-neon-orange/40 flex items-center gap-3 animate-gradient-x
-              border-2 border-neon-orange/50 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="relative bg-gradient-to-r from-neon-orange to-neon-purple text-white px-8 py-4 rounded-lg font-bold font-orbitron tracking-wide
+              transition-all duration-500 transform flex items-center gap-3
+              disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{
+                scale: 1.08,
+                boxShadow: "0 15px 35px rgba(6, 182, 212, 0.4)",
+                y: -3
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 500, damping: 15 }}
             >
-              {isSubmitting ? (
-                <>
-                  <Loader className="w-6 h-6 animate-spin" />
-                  NEURAL PROCESSING...
-                </>
-              ) : showSuccess ? (
-                <>
-                  <Check className="w-6 h-6 text-lime-green" />
-                  TRANSMISSION COMPLETE!
-                </>
-              ) : (
-                'INITIATE NEURAL LINK'
-              )}
-            </button>
+              <span className="relative z-10">
+                {isSubmitting ? (
+                  <>
+                    <Loader className="w-6 h-6 animate-spin inline mr-2" />
+                    NEURAL PROCESSING...
+                  </>
+                ) : showSuccess ? (
+                  <>
+                    <Check className="w-6 h-6 inline mr-2" />
+                    TRANSMISSION COMPLETE!
+                  </>
+                ) : (
+                  'INITIATE NEURAL LINK'
+                )}
+              </span>
+            </motion.button>
           </div>
         </form>
       </div>

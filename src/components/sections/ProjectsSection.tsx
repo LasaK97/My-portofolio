@@ -220,10 +220,10 @@ const ProjectsSection = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="container mx-auto px-4"
       >
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
           Projects
         </h2>
-        <p className="text-medium-gray text-center mb-8 text-lg">
+        <p className="text-medium-gray text-center mb-24 text-lg">
           My AI & ML innovations in action
         </p>
 
@@ -235,7 +235,7 @@ const ProjectsSection = () => {
             className="absolute -left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10"
             whileHover={{ 
               color: "#06b6d4",
-              scale: 1.1
+              scale: 1.05
             }}
             whileTap={{ 
               scale: 0.9
@@ -253,7 +253,7 @@ const ProjectsSection = () => {
             className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10"
             whileHover={{ 
               color: "#06b6d4",
-              scale: 1.1
+              scale: 1.05
             }}
             whileTap={{ 
               scale: 0.9
@@ -325,18 +325,25 @@ const ProjectsSection = () => {
                   </div>
 
                   
-                  <a  href={projects[currentIndex].githubUrl}
+                  <motion.a  href={projects[currentIndex].githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-neon-orange to-hot-pink text-void-black px-6 py-3 rounded-lg font-semibold
-                            hover:from-electric-orange hover:to-hot-pink transition-all duration-300 
-                            shadow-lg shadow-neon-orange/25 hover:shadow-xl hover:shadow-neon-orange/40 
-                            flex items-center gap-2 mt-4 w-fit font-orbitron tracking-wide
-                            border-2 border-neon-orange/50 hover:scale-105 transform"
+                    className="relative bg-gradient-to-r from-neon-orange to-neon-purple text-white px-6 py-3 rounded-lg font-semibold
+                            transition-all duration-500 transform
+                            inline-flex items-center gap-2 mt-4 w-fit font-orbitron tracking-wide"
+                    whileHover={{
+                      scale: 1.08,
+                      boxShadow: "0 15px 35px rgba(6, 182, 212, 0.4)",
+                      y: -3
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
                   >
-                    <ExternalLink size={16} />
-                    Explore Project
-                  </a>
+                    <span className="relative z-10 flex items-center gap-2">
+                      <ExternalLink size={16} />
+                      Explore Project
+                    </span>
+                  </motion.a>
                 </div>
               </div>
             </div>
@@ -351,7 +358,7 @@ const ProjectsSection = () => {
                 key={index}
                 onClick={() => handleDotClick(index)}
                 className="relative"
-                whileHover={{ scale: 1.2 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >

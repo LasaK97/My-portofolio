@@ -7,7 +7,7 @@ import TimelineNode from './experience/TimelineNode';
 
 const ExperienceSection: React.FC = () => {
   const [visibleNodes, setVisibleNodes] = useState<number[]>([]);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const experiences: Experience[] = [
     {
@@ -37,7 +37,6 @@ const ExperienceSection: React.FC = () => {
       isCurrentJob: false,
       logo: "/images/work/janashakthi.png"
     },
-
   ];
 
   useEffect(() => {
@@ -61,8 +60,8 @@ const ExperienceSection: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen py-16">
-      <div className="text-center mb-5">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent font-orbitron uppercase tracking-wide animate-neon-glow">
+      <div className="text-center mb-24">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
         Professional Journey
         </h2>
         <p className="text-medium-gray mt-2 text-lg">
@@ -71,27 +70,44 @@ const ExperienceSection: React.FC = () => {
       </div>
       {/* Timeline container */}
       <div className="relative max-w-6xl mx-auto px-4">
-        {/* Vertical Timeline Line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-[3px] transform -translate-x-1/2 hidden lg:block">
-          <div 
-            className="h-full animate-neural-pulse" 
-            style={{
+        {/* Vertical Timeline Line with Tapered Edges */}
+        <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 hidden lg:block">
+          {/* Main tapered line */}
+          <div className="relative h-full w-1 flex flex-col items-center">
+            {/* Top taper - transparent to gradient colors */}
+            <div className="h-20 w-full" style={{
+              background: 'linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.3) 50%, rgba(59, 130, 246, 0.8) 100%)',
+              backdropFilter: 'blur(4px)'
+            }} />
+            <div className="absolute top-0 h-20 w-full blur-sm" style={{
+              background: 'linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.2) 50%, rgba(59, 130, 246, 0.5) 100%)'
+            }} />
+            <div className="absolute top-0 h-20 w-full blur-md" style={{
+              background: 'linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.1) 50%, rgba(59, 130, 246, 0.3) 100%)'
+            }} />
+            
+            {/* Middle section - full thickness with gradient */}
+            <div className="flex-1 w-full" style={{
               background: 'linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
               backgroundSize: '100% 200%',
-              animation: 'gradientFlow 4s ease-in-out infinite alternate'
-            }}
-          />
-          <div 
-            className="absolute inset-0 blur-sm opacity-50" 
-            style={{
-              background: 'linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
-              backgroundSize: '100% 200%',
-              animation: 'gradientFlow 4s ease-in-out infinite alternate'
-            }}
-          />
+              animation: 'gradientFlow 4s ease-in-out infinite alternate',
+              boxShadow: '0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(139, 92, 246, 0.4)'
+            }} />
+            
+            {/* Bottom taper - gradient colors to transparent */}
+            <div className="h-20 w-full" style={{
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0.3) 50%, transparent 100%)',
+              backdropFilter: 'blur(4px)'
+            }} />
+            <div className="absolute bottom-0 h-20 w-full blur-sm" style={{
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.5) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 100%)'
+            }} />
+            <div className="absolute bottom-0 h-20 w-full blur-md" style={{
+              background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.3) 0%, rgba(6, 182, 212, 0.1) 50%, transparent 100%)'
+            }} />
+          </div>
         </div>
 
-        {/* Experience Cards */}
         <div className="relative space-y-18">
           <AnimatePresence mode="wait">
             {experiences.map((exp, index) => (
