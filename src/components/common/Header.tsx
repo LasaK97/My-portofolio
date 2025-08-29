@@ -224,14 +224,12 @@ export const Header = () => {
                     ? 'text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text'
                     : 'text-white/70 hover:text-transparent hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-cyan-500 hover:bg-clip-text'
                 }`}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{
                   paddingLeft: '16px',
                   paddingRight: '16px',
                   paddingTop: '8px',
-                  paddingBottom: '8px'
-                }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ 
+                  paddingBottom: '8px',
                   opacity: 1, 
                   x: 0 
                 }}
