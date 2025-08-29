@@ -308,7 +308,7 @@ const ProjectsSection = () => {
                   <h3 className="flex flex-col lg:flex-row items-baseline gap-2 lg:gap-3 text-lg">
                     <span className="font-bold text-neon-orange font-orbitron">{projects[currentIndex].title}</span>
                   </h3>
-                  <p className="text-off-white text-sm mt-3 leading-relaxed">
+                  <p className="text-off-white text-sm mt-3 leading-relaxed text-justify">
                     {projects[currentIndex].description}
                   </p>
 

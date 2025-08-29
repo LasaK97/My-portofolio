@@ -41,7 +41,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, position, o
           </p>
           
           {/* Description */}
-          <p className="text-light-gray mt-3 text-sm leading-relaxed">{experience.description}</p>
+          <p className="text-light-gray mt-3 text-sm leading-relaxed text-justify">{experience.description}</p>
         </div>
       </div>
       

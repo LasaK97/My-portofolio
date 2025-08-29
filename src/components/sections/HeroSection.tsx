@@ -186,7 +186,7 @@ const HeroSection = () => {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              Lasantha Kulasooriya
+              Lasantha<br />Kulasooriya
             </motion.h1>
 
             {/* Title with Typing Animation - NORMAL SIZE */}
@@ -242,7 +242,7 @@ const HeroSection = () => {
 
             {/* Small Description */}
             <motion.p 
-              className="text-light-gray text-base md:text-lg leading-relaxed mb-6 max-w-2xl text-justify lg:text-left"
+              className="text-light-gray text-base md:text-lg leading-relaxed mb-6 max-w-2xl text-justify"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,

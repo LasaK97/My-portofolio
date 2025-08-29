@@ -129,19 +129,19 @@ export const AboutSection = () => {
                   <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
                     Hi, I&apos;m Lasantha
                   </h3>
-                  <p className="text-base lg:text-lg leading-relaxed">
+                  <p className="text-base lg:text-lg leading-relaxed text-justify">
                     I am a Data Scientist and AI Engineer with over a year of experience, 
                     passionate about transforming AI research into real-world applications. My work 
                     focuses on developing intelligent systems that solve complex problems and drive meaningful impact.
                   </p>
-                  <p className="text-base lg:text-lg leading-relaxed">
+                  <p className="text-base lg:text-lg leading-relaxed text-justify">
                     With hands-on experience in building AI models, I have worked on projects 
                     that deepen my understanding 
                     of machine learning, deep learning, and data-driven decision-making. 
                     I am committed to exploring advancements in AI, ensuring that cutting-edge research 
                     translates into practical and scalable solutions.
                   </p>
-                  <p className="text-base lg:text-lg leading-relaxed">
+                  <p className="text-base lg:text-lg leading-relaxed text-justify">
                     Currently, I am focused on developing AI-driven systems that 
                     enhance accessibility and efficiency in real-world applications.
                     My goal is to bridge the gap between theory and practice, creating 
@@ -288,20 +288,20 @@ export const AboutSection = () => {
               }}
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             >
-              <div className="space-y-4 text-gray-300 font-roboto text-justify md:text-left px-4">
+              <div className="space-y-4 text-gray-300 font-roboto text-justify px-4">
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
                   Hi, I&apos;m Lasantha
                 </h3>
-                <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">
                   I am a Data Scientist and AI Engineer with over a year of experience, 
                   passionate about transforming AI research into real-world applications. My work 
                   focuses on developing intelligent systems that solve complex problems and drive meaningful impact.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">
                   With hands-on experience in building AI models, I have worked on projects 
                   that deepen my understanding of machine learning, deep learning, and data-driven decision-making.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">
                   Currently, I am focused on developing AI-driven systems that 
                   enhance accessibility and efficiency in real-world applications.
                 </p>
