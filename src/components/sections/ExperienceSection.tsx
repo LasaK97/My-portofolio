@@ -1,6 +1,6 @@
 // src/components/sections/experience/ExperienceSection.tsx
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Experience } from '@/types/experience';
 import ExperienceCard from './experience/ExperienceCard';
 import TimelineNode from './experience/TimelineNode';
@@ -59,22 +59,56 @@ const ExperienceSection: React.FC = () => {
   }, [experiences.length]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-16 md:py-20 lg:py-24">
-      <div className="text-center mb-24">
+    <section ref={sectionRef} className="relative min-h-screen py-20 md:py-20 lg:py-24">
+      <div className="text-center mb-12 md:mb-24">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
         Professional Journey
         </h2>
-        <p className="text-medium-gray mt-2 text-lg">
+        <p className="text-medium-gray mt-2 text-base md:text-lg px-4">
          Building AI solutions in the real world
         </p>
       </div>
-      {/* Timeline container */}
-      <div className="relative max-w-6xl mx-auto px-4">
-        {/* Vertical Timeline Line with Tapered Edges */}
-        <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 hidden lg:block">
-          {/* Main tapered line */}
+
+      {/* Mobile Layout - Just Cards */}
+      <div className="lg:hidden px-4 sm:px-6">
+        <div className="space-y-6">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.id}
+              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              {/* Mobile Card */}
+              <div className="relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
+                <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-4 sm:p-6 rounded-lg">
+                  <h3 className="font-bold text-neon-orange font-orbitron text-base sm:text-lg">
+                    {exp.title}
+                  </h3>
+                  <p className="text-cyber-cyan text-sm sm:text-base font-medium mt-1">
+                    {exp.company}
+                  </p>
+                  <p className="text-hot-pink text-xs sm:text-sm mt-2">
+                    {exp.duration}
+                  </p>
+                  <p className="text-light-gray mt-3 text-xs sm:text-sm leading-relaxed">
+                    {exp.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Layout - Original */}
+      <div className="hidden lg:block relative max-w-6xl mx-auto px-4">
+        {/* Desktop Timeline Line with Tapered Edges */}
+        <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2">
           <div className="relative h-full w-1 flex flex-col items-center">
-            {/* Top taper - transparent to gradient colors */}
             <div className="h-20 w-full" style={{
               background: 'linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.3) 50%, rgba(59, 130, 246, 0.8) 100%)',
               backdropFilter: 'blur(4px)'
@@ -86,7 +120,6 @@ const ExperienceSection: React.FC = () => {
               background: 'linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.1) 50%, rgba(59, 130, 246, 0.3) 100%)'
             }} />
             
-            {/* Middle section - full thickness with gradient */}
             <div className="flex-1 w-full" style={{
               background: 'linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(139, 92, 246) 50%, rgb(6, 182, 212) 100%)',
               backgroundSize: '100% 200%',
@@ -94,7 +127,6 @@ const ExperienceSection: React.FC = () => {
               boxShadow: '0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(139, 92, 246, 0.4)'
             }} />
             
-            {/* Bottom taper - gradient colors to transparent */}
             <div className="h-20 w-full" style={{
               background: 'linear-gradient(180deg, rgba(6, 182, 212, 0.8) 0%, rgba(6, 182, 212, 0.3) 50%, transparent 100%)',
               backdropFilter: 'blur(4px)'

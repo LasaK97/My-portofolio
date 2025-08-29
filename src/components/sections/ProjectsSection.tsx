@@ -211,7 +211,7 @@ const ProjectsSection = () => {
     <section 
       ref={sectionRef}
       id="projects" 
-      className="min-h-screen py-16 md:py-20 lg:py-24 relative"
+      className="min-h-screen py-20 md:py-20 lg:py-24 relative"
     >
       <motion.div
         initial={{ y: 50, scale: 0.95 }}

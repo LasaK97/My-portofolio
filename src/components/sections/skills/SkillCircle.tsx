@@ -10,15 +10,42 @@ const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay
   const [isHovered, setIsHovered] = useState(false);
   const [showPercentage, setShowPercentage] = useState(false);
   const [flipInterval, setFlipInterval] = useState<NodeJS.Timeout | null>(null);
-  const circleSize = 70;
+  
+  // Responsive circle sizes
+  const getCircleSize = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return 60; // Mobile
+      if (window.innerWidth < 768) return 65; // Small tablet
+      return 70; // Desktop
+    }
+    return 70;
+  };
+  
+  const [circleSize, setCircleSize] = useState(70);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setCircleSize(getCircleSize());
+    };
+    
+    handleResize(); // Set initial size
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   const strokeWidth = 3;
   const radius = (circleSize - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
 
-  // Randomized flip timing
+  // Randomized flip timing - reduced for mobile
   useEffect(() => {
-    const randomInterval = 2000 + Math.random() * 3000 + (index * 200); // 2-5 seconds + stagger
+    const isMobile = window.innerWidth < 768;
+    const randomInterval = isMobile 
+      ? 3000 + Math.random() * 2000 + (index * 300) // 3-5 seconds on mobile
+      : 2000 + Math.random() * 3000 + (index * 200); // 2-5 seconds on desktop
+    
     const interval = setInterval(() => {
       setShowPercentage(prev => !prev);
     }, randomInterval);
@@ -93,18 +120,20 @@ const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay
           >
             {(showPercentage || isHovered) ? (
               // Show Percentage
-              <div className="text-lg font-bold text-blue-400">
+              <div className={`font-bold text-blue-400 ${circleSize < 65 ? 'text-sm' : 'text-lg'}`}>
                 {percentage}%
               </div>
             ) : (
-              // Show Icon
-              <div className="relative w-10 h-10 flex items-center justify-center">
+              // Show Icon - responsive size
+              <div className={`relative flex items-center justify-center ${
+                circleSize < 65 ? 'w-8 h-8' : 'w-10 h-10'
+              }`}>
                 <Image
                   src={logo}
                   alt={name}
                   fill
                   className="object-contain"
-                  sizes="40px"
+                  sizes={circleSize < 65 ? "32px" : "40px"}
                 />
               </div>
             )}
@@ -112,9 +141,11 @@ const SkillCircle: React.FC<SkillCircleProps> = ({ name, logo, percentage, delay
         </div>
       </motion.div>
 
-      {/* Skill Name */}
+      {/* Skill Name - responsive text */}
       <motion.span 
-        className="mt-3 text-xs whitespace-nowrap font-medium transition-all duration-300"
+        className={`mt-2 sm:mt-3 whitespace-nowrap font-medium transition-all duration-300 ${
+          circleSize < 65 ? 'text-[10px]' : 'text-xs'
+        }`}
         animate={{
           color: isHovered ? '#3b82f6' : '#9e9ea7',
           scale: isHovered ? 1.05 : 1,

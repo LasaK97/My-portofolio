@@ -63,7 +63,7 @@ export const AboutSection = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-16 md:py-20 lg:py-24"
+      className="relative py-20 md:py-20 lg:py-24"
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.h2 

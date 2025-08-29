@@ -213,8 +213,8 @@ const HeroSection = () => {
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-              I specialize in developing AI solutions for advanced robotics, integrating machine learning, 
-              computer vision, and sensor fusion to enhance autonomy and real-world adaptability.
+              I specialize in developing and deploying intelligent systems, leveraging expertise in machine learning, 
+              deep learning, and data science to translate complex challenges into impactful, data-driven solutions.
             </motion.p>
 
               {/* Social Links */}
@@ -390,7 +390,7 @@ const HeroSection = () => {
       {/* Scroll indicator - only show on home section */}
       {showScrollIndicator && (
         <motion.div 
-          className="fixed bottom-8 left-1/2 transform -translate-x-1/2 text-medium-gray z-40"
+          className="fixed bottom-8 left-0 right-0 text-medium-gray z-40 flex justify-center"
             initial={{ opacity: 0, y: 50, scale: 0.8 }}
             animate={{
               opacity: animationState === 'visible' ? 1 : 0,
@@ -403,36 +403,33 @@ const HeroSection = () => {
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
           >
-            <motion.div 
-              className="flex flex-col items-center gap-2"
-            >
-              <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center">
+              <motion.div 
+                className="relative flex flex-col items-center"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="text-sm uppercase tracking-wide text-center block">Scroll to explore</span>
                 <motion.div 
-                  className="relative mb-4"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <span className="text-sm uppercase tracking-wide">Scroll to explore</span>
-                  <motion.div 
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-full -mb-1"
-                    animate={{ scaleX: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                </motion.div>
-                <motion.div 
-                  className="w-px h-8 bg-gradient-to-b from-secondary-accent to-transparent"
-                  animate={{ 
-                    y: [0, 6, 0],
-                    opacity: [0.5, 1, 0.5]
-                  }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 0.3
-                  }}
+                  className="h-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-full mt-1 w-32 mx-auto"
+                  animate={{ scaleX: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ transformOrigin: 'center' }}
                 />
-              </div>
-            </motion.div>
+              </motion.div>
+              <motion.div 
+                className="w-px h-8 bg-gradient-to-b from-secondary-accent to-transparent mt-4 mx-auto"
+                animate={{ 
+                  y: [0, 6, 0],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 0.3
+                }}
+              />
+            </div>
           </motion.div>
         )}
     </section>
