@@ -56,7 +56,7 @@ const EducationSection: React.FC = () => {
               <div className="relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-lg opacity-15 animate-gradient-x blur-sm" />
                 <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-3 sm:p-4 rounded-lg">
-                  <h3 className="font-bold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text font-orbitron text-sm sm:text-base">
+                  <h3 className="font-bold text-neon-orange font-orbitron text-sm sm:text-base">
                     {edu.degree}
                   </h3>
                   <p className="text-cyan-400 text-xs sm:text-sm font-medium mt-1">

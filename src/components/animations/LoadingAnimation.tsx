@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const LoadingAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRef = useRef<number>(0);
-  const [stage, setStage] = useState<'neural-loading' | 'transitioning' | 'welcome' | 'expanding'>('neural-loading');
+  const [stage, setStage] = useState<'neural-loading' | 'transitioning' | 'welcome'>('neural-loading');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -148,23 +148,19 @@ const LoadingAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
         setTimeout(() => {
           isConverging = false;
           particles.forEach(p => p.isConverging = false);
-        }, 500);
+        }, 300);
         
         setTimeout(() => {
-          setStage('expanding');
-          isExploding = true;
+          fadeOut = true;
           setTimeout(() => {
-            fadeOut = true;
-            setTimeout(() => {
-              onComplete();
-            }, 1000);
-          }, 800);
-        }, 1800); // Show WELCOME for 1.8s
-      }, 800); // Transition time
+            onComplete();
+          }, 500);
+        }, 800); // Show WELCOME for 0.8s
+      }, 400); // Transition time
     };
 
-    // Start transition after 2s of neural loading
-    setTimeout(startTransition, 2000);
+    // Start transition after 1s of neural loading
+    setTimeout(startTransition, 1000);
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -294,66 +290,20 @@ const LoadingAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
                   animate={{ 
                     opacity: 1, 
                     x: 0,
-                    scale: [0.7, 1.1, 1],
+                    scale: 1,
                   }}
                   exit={{ 
                     opacity: 0,
                     scale: 0.9,
                   }}
                   transition={{ 
-                    duration: 0.6,
-                    times: [0, 0.6, 1],
+                    duration: 0.4,
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
                   <motion.span
-                    animate={{ 
-                      letterSpacing: ['0.1em', '0.3em', '0.2em'],
-                    }}
-                    transition={{ 
-                      duration: 1.5, 
-                      ease: "easeInOut"
-                    }}
                     className="text-2xl md:text-3xl font-orbitron font-bold bg-gradient-to-r from-primary-accent via-cyber-cyan to-neon-purple bg-clip-text text-transparent"
-                  >
-                    WELCOME
-                  </motion.span>
-                </motion.div>
-              )}
-              
-              {stage === 'expanding' && (
-                <motion.div
-                  key="expanding"
-                  initial={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-                  animate={{ 
-                    scale: [1, 1.2, 2, 4, 8],
-                    opacity: [1, 1, 0.8, 0.4, 0],
-                    letterSpacing: ['0.2em', '0.3em', '0.5em', '1em', '2em'],
-                    filter: ["blur(0px)", "blur(0px)", "blur(1px)", "blur(3px)", "blur(10px)"]
-                  }}
-                  transition={{ 
-                    duration: 1.8,
-                    times: [0, 0.2, 0.5, 0.8, 1],
-                    ease: "easeInOut"
-                  }}
-                  className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                >
-                  <motion.span 
-                    className="text-3xl md:text-4xl font-orbitron font-bold bg-gradient-to-r from-primary-accent via-cyber-cyan to-neon-purple bg-clip-text text-transparent"
-                    animate={{
-                      textShadow: [
-                        "0 0 0px rgba(59, 130, 246, 0)",
-                        "0 0 20px rgba(59, 130, 246, 0.5)",
-                        "0 0 40px rgba(6, 182, 212, 0.5)",
-                        "0 0 60px rgba(139, 92, 246, 0.3)",
-                        "0 0 80px rgba(139, 92, 246, 0)"
-                      ]
-                    }}
-                    transition={{
-                      duration: 1.8,
-                      times: [0, 0.2, 0.5, 0.8, 1]
-                    }}
                   >
                     WELCOME
                   </motion.span>
