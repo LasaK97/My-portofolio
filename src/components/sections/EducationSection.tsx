@@ -30,7 +30,7 @@ const EducationSection: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-16">
+    <section ref={sectionRef} className="relative min-h-screen py-16 md:py-20 lg:py-24">
       <div className="text-center mb-16">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
           Neural Academy

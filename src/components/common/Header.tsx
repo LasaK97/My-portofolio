@@ -136,7 +136,7 @@ export const Header = () => {
           ease: [0.25, 0.46, 0.45, 0.94]
         }}
       >
-        <div className={`flex items-center h-full justify-between ${isOnIntro ? 'px-8' : 'px-6'}`}>
+        <div className={`flex items-center h-full justify-between ${isOnIntro ? 'px-8' : 'px-8'}`}>
           {/* Logo */}
           <motion.div
             className="flex items-center flex-shrink-0"
@@ -149,7 +149,7 @@ export const Header = () => {
               onClick={() => scrollToSection('home')}
               className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300"
             >
-              <div className="relative w-8 h-8">
+              <div className="relative w-20 h-20">
                 <Image
                   src="/images/icon-logo.png"
                   alt="Logo"
@@ -165,7 +165,7 @@ export const Header = () => {
           <motion.div
             className="flex items-center overflow-hidden"
             animate={{
-              gap: isOnIntro ? '47px' : '35px'
+              gap: '47px'
             }}
             transition={{ 
               duration: 0.6,
@@ -182,8 +182,8 @@ export const Header = () => {
                     : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
                 animate={{
-                  paddingLeft: isOnIntro ? '16px' : '12px',
-                  paddingRight: isOnIntro ? '16px' : '12px',
+                  paddingLeft: '16px',
+                  paddingRight: '16px',
                   paddingTop: '8px',
                   paddingBottom: '8px'
                 }}
@@ -199,7 +199,7 @@ export const Header = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className={isOnIntro ? 'inline' : 'hidden sm:inline text-xs'}>{label}</span>
+                <span className={isOnIntro ? 'inline' : 'hidden sm:inline text-base'}>{label}</span>
                 <Icon size={16} className={isOnIntro ? 'hidden' : 'sm:hidden'} />
                 {activeSection === id && (
                   <motion.div
