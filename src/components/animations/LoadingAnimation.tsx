@@ -130,7 +130,7 @@ const LoadingAnimation: React.FC<{ onComplete: () => void }> = ({ onComplete }) 
       () => new Particle(canvas.width, canvas.height)
     );
     
-    let isExploding = false;
+    const isExploding = false;
     let isConverging = false;
     let globalOpacity = 1;
     let fadeOut = false;
