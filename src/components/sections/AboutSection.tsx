@@ -73,7 +73,7 @@ export const AboutSection = () => {
             y: isVisible ? 0 : -30 
           }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide"
+          className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0"
         >
           About Me
         </motion.h2>

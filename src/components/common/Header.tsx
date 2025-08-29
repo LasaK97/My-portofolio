@@ -156,7 +156,7 @@ export const Header = () => {
               onClick={() => scrollToSection('home')}
               className="absolute left-1/2 -translate-x-1/2"
             >
-              <div className="relative w-16 h-16">
+              <div className="relative w-12 h-12">
                 <Image
                   src="/images/icon-logo.png"
                   alt="Logo"

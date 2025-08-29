@@ -130,7 +130,7 @@ const HeroSection = () => {
 
               {/* Name - ONLY NAME IS ENLARGED */}
               <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
+                className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
               initial={{ opacity: 0, y: 80, scale: 0.8, filter: "blur(15px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -149,7 +149,7 @@ const HeroSection = () => {
 
               {/* Title with Typing Animation - NORMAL SIZE */}
               <motion.h2 
-                className="text-lg md:text-xl lg:text-2xl font-semibold text-off-white mb-6 h-10 md:h-12 flex items-center justify-center lg:justify-start"
+                className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold text-off-white mb-4 sm:mb-6 h-8 sm:h-10 md:h-12 flex items-center justify-center lg:justify-start"
               initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -200,7 +200,7 @@ const HeroSection = () => {
 
               {/* Small Description */}
               <motion.p 
-                className="text-light-gray text-sm md:text-base leading-relaxed mb-6 text-justify max-w-lg"
+                className="text-light-gray text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 text-justify max-w-lg px-4 sm:px-0"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -238,7 +238,7 @@ const HeroSection = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative w-12 h-12 bg-gradient-to-r from-neon-orange to-hot-pink rounded-lg flex items-center justify-center text-white transition-all duration-500"
+                  className="relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-neon-orange to-hot-pink rounded-lg flex items-center justify-center text-white transition-all duration-500"
                   initial={{ opacity: 0, scale: 0.5, y: 50 }}
                   animate={{ 
                     opacity: animationState === 'visible' ? 1 : 0,
@@ -282,7 +282,7 @@ const HeroSection = () => {
             >
               <motion.button
                 onClick={scrollToProjects}
-                className="w-full sm:w-56 bg-gradient-to-r from-neon-orange to-neon-purple text-white px-8 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-500"
+                className="w-full sm:w-56 bg-gradient-to-r from-neon-orange to-neon-purple text-white px-4 py-2 sm:px-8 sm:py-3 rounded-lg text-sm sm:text-base font-semibold flex items-center justify-center gap-2 transition-all duration-500"
                 whileHover={{ 
                   scale: 1.08, 
                   y: -3,
@@ -308,7 +308,7 @@ const HeroSection = () => {
               <div className="relative p-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-lg animate-gradient-x w-full sm:w-56">
                 <motion.a
                   href="#contact"
-                  className="w-full bg-void-black px-8 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-500"
+                  className="w-full bg-void-black px-4 py-2 sm:px-8 sm:py-3 rounded-lg text-sm sm:text-base font-semibold flex items-center justify-center gap-2 transition-all duration-500"
                   initial={{ x: 30, opacity: 0 }}
                   animate={{ 
                     x: animationState === 'visible' ? 0 : 30,

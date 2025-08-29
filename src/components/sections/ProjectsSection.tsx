@@ -220,7 +220,7 @@ const ProjectsSection = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="container mx-auto px-4"
       >
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
+        <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
           Projects
         </h2>
         <p className="text-medium-gray text-center mb-24 text-lg">

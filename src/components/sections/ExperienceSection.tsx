@@ -61,7 +61,7 @@ const ExperienceSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative min-h-screen py-20 md:py-20 lg:py-24">
       <div className="text-center mb-12 md:mb-24">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-5 md:mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide">
+        <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
         Professional Journey
         </h2>
         <p className="text-medium-gray mt-2 text-base md:text-lg px-4">
@@ -84,17 +84,17 @@ const ExperienceSection: React.FC = () => {
               {/* Mobile Card */}
               <div className="relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
-                <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-4 sm:p-6 rounded-lg">
-                  <h3 className="font-bold text-neon-orange font-orbitron text-base sm:text-lg">
+                <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-3 sm:p-4 rounded-lg">
+                  <h3 className="font-bold text-neon-orange font-orbitron text-sm sm:text-base">
                     {exp.title}
                   </h3>
-                  <p className="text-cyber-cyan text-sm sm:text-base font-medium mt-1">
+                  <p className="text-cyber-cyan text-xs sm:text-sm font-medium mt-1">
                     {exp.company}
                   </p>
-                  <p className="text-hot-pink text-xs sm:text-sm mt-2">
+                  <p className="text-hot-pink text-xs mt-2">
                     {exp.duration}
                   </p>
-                  <p className="text-light-gray mt-3 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-light-gray mt-2 text-xs leading-relaxed">
                     {exp.description}
                   </p>
                 </div>
