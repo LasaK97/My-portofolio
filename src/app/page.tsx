@@ -2,7 +2,6 @@
 'use client';
 
 import NeuralBackground from '../components/animations/NeuralBackground';
-import { Navigation } from '../components/common/Navigation';
 import { Header } from '../components/common/Header';
 import HeroSection from '../components/sections/HeroSection';
 import { AnimationProvider } from '../contexts/AnimationContext';
@@ -23,7 +22,6 @@ export default function Home() {
           <NeuralBackground />
           <div className="relative z-10">
             <Header />
-            <Navigation />
 
         {/* Hero Section */}
         <HeroSection />
