@@ -176,10 +176,10 @@ export const Header = () => {
               <motion.button
                 key={id}
                 onClick={() => scrollToSection(id)}
-                className={`relative rounded-full text-base font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`relative text-base font-medium transition-all duration-300 whitespace-nowrap overflow-visible group ${
                   activeSection === id
-                    ? 'text-white bg-white/20'
-                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                    ? 'text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text'
+                    : 'text-white/70 hover:text-transparent hover:bg-gradient-to-r hover:from-blue-500 hover:via-purple-500 hover:to-cyan-500 hover:bg-clip-text'
                 }`}
                 animate={{
                   paddingLeft: '16px',
@@ -202,10 +202,12 @@ export const Header = () => {
                 <span className={isOnIntro ? 'inline' : 'hidden sm:inline text-base'}>{label}</span>
                 <Icon size={16} className={isOnIntro ? 'hidden' : 'sm:hidden'} />
                 {activeSection === id && (
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-neon-orange/30 to-cyber-cyan/30 rounded-full"
-                    layoutId="activeBackground"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  <motion.div 
+                    className="absolute bottom-0 left-2 right-2 h-[2px] bg-gradient-to-r from-neon-orange to-neon-purple rounded-full"
+                    initial={{ scaleX: 0.5 }}
+                    animate={{ scaleX: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ transformOrigin: 'center' }}
                   />
                 )}
               </motion.button>
