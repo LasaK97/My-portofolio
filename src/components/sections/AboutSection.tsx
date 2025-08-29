@@ -126,7 +126,7 @@ export const AboutSection = () => {
                 transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
               >
                 <div className="space-y-4 text-gray-300 font-roboto">
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6">
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
                     Hi, I&apos;m Lasantha
                   </h3>
                   <p className="text-base lg:text-lg leading-relaxed text-justify">
@@ -289,7 +289,7 @@ export const AboutSection = () => {
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             >
               <div className="space-y-4 text-gray-300 font-roboto text-justify px-4">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-4">
                   Hi, I&apos;m Lasantha
                 </h3>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">

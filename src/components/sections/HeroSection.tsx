@@ -130,7 +130,7 @@ const HeroSection = () => {
 
               {/* Name - ONLY NAME IS ENLARGED */}
               <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 font-orbitron bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan bg-clip-text text-transparent leading-tight animate-gradient-x"
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
               initial={{ opacity: 0, y: 80, scale: 0.8, filter: "blur(15px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -328,7 +328,7 @@ const HeroSection = () => {
                   }}
                 >
                   <Mail size={18} className="text-neon-orange" style={{ filter: 'drop-shadow(0 0 2px #8b5cf6)' }} />
-                  <span className="bg-gradient-to-r from-neon-orange to-neon-purple bg-clip-text text-transparent">Contact Me</span>
+                  <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">Contact Me</span>
                 </motion.a>
               </div>
             </motion.div>
