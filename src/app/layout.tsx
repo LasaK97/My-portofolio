@@ -21,28 +21,83 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Portofolio | Lasantha",
-  description: "Professional portfolio of Lasantha Kulasooriya, showcasing skills in Data Science, AI Engineering, Computer Vision and NLP projects, and experience as a data scientist and AI engineer.",
-  keywords: "Lasantha Kulasooriya, Data Scientist, AI Engineer, Computer Vision Engineer, portofolio, Insurance Data scientist, AI App Developement, Data Scientist Sri Lanka, AI Engineer Sri Lanka",
+  metadataBase: new URL('https://lk-ai.vercel.app'),
+  title: {
+    default: 'Lasantha Kulasooriya | AI Engineer & Data Scientist',
+    template: '%s | Lasantha Kulasooriya'
+  },
+  description: 'AI Engineer and Data Scientist specializing in Machine Learning, Computer Vision, and NLP. Building intelligent solutions that transform data into real-world impact with over a year of experience in AI/ML development.',
+  keywords: [
+    'Lasantha Kulasooriya',
+    'AI Engineer',
+    'Data Scientist',
+    'Machine Learning Engineer',
+    'Computer Vision',
+    'Natural Language Processing',
+    'Deep Learning',
+    'Sri Lanka',
+    'AI Solutions',
+    'ML Models',
+    'Insurance AI',
+    'Data Analytics',
+    'Python',
+    'TensorFlow',
+    'PyTorch'
+  ],
+  authors: [{ name: 'Lasantha Kulasooriya', url: 'https://lk-ai.vercel.app' }],
+  creator: 'Lasantha Kulasooriya',
+  publisher: 'Lasantha Kulasooriya',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    title: 'Lasantha Kulasooriya | Data Scientist',
-    description: 'Professional portfolio showcasing my skills and projects in data science and AI Engineer',
+    type: 'website',
+    locale: 'en_US',
     url: 'https://lk-ai.vercel.app',
     siteName: 'Lasantha Kulasooriya Portfolio',
-    // images: [
-    //   {
-    //     url: 'https://your-domain.com/images/og-image.jpg',
-    //     width: 1200,
-    //     height: 630,
-    //     alt: 'Lasantha Kulasooriya - Data Scientist',
-    //   }
-    // ],
-    type: 'website',
+    title: 'Lasantha Kulasooriya | AI Engineer & Data Scientist',
+    description: 'Transforming AI research into real-world applications. Specializing in Machine Learning, Computer Vision, and NLP with proven experience in developing intelligent systems.',
+    images: [{
+      url: '/images/og-image.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'Lasantha Kulasooriya - AI Engineer & Data Scientist Portfolio',
+      type: 'image/jpeg'
+    }]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lasantha Kulasooriya | AI Engineer & Data Scientist',
+    description: 'AI Engineer specializing in ML, Computer Vision & NLP. Building intelligent solutions that drive real-world impact.',
+    images: ['/images/og-image.jpg'],
+    creator: '@LasanthaK97'
   },
   robots: {
     index: true,
     follow: true,
-  }
+    noarchive: false,
+    nosnippet: false,
+    noimageindex: false,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-search-console-verification-code',
+  },
+  alternates: {
+    canonical: 'https://lk-ai.vercel.app',
+  },
+  category: 'technology',
+  classification: 'portfolio'
 };
 
 export default function RootLayout({

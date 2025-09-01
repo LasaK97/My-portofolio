@@ -377,7 +377,7 @@ const HeroSection = () => {
         >
           <Image
             src="/images/intro-page-pic.png"
-            alt="AI Technology Visualization"
+            alt="Lasantha Kulasooriya - AI Engineer and Data Scientist with futuristic technology background showcasing neural networks and machine learning concepts"
             fill
             className="object-contain object-bottom"
             priority

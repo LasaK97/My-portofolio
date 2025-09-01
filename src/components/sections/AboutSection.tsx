@@ -102,7 +102,7 @@ export const AboutSection = () => {
                     <div className="relative h-full rounded-2xl overflow-hidden bg-dark-slate/90 backdrop-blur-sm border border-border-gray/30">
                       <Image
                         src="/images/about-photo.jpg"
-                        alt="Lasantha's Profile"
+                        alt="Professional headshot of Lasantha Kulasooriya, AI Engineer and Data Scientist, wearing formal attire in a modern studio setting"
                         fill
                         className="object-cover object-center hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 768px) 100vw, 40vw"
@@ -265,7 +265,7 @@ export const AboutSection = () => {
                   <div className="relative h-full rounded-xl overflow-hidden bg-dark-slate/90 backdrop-blur-sm border border-border-gray/30">
                     <Image
                       src="/images/about-photo.jpg"
-                      alt="Lasantha's Profile"
+                      alt="Professional headshot of Lasantha Kulasooriya, AI Engineer and Data Scientist, wearing formal attire in a modern studio setting"
                       fill
                       className="object-cover object-center hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
