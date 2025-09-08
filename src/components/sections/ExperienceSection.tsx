@@ -59,12 +59,12 @@ const ExperienceSection: React.FC = () => {
   }, [experiences.length]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 md:py-20 lg:py-24">
-      <div className="text-center mb-12 md:mb-24">
-        <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-4 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
+    <section ref={sectionRef} className="relative min-h-screen py-16 sm:py-20 md:py-24 lg:py-28">
+      <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-24">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-center mt-2 mb-4 md:mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
         Professional Journey
         </h2>
-        <p className="text-medium-gray mt-2 text-base md:text-lg px-4">
+        <p className="text-medium-gray mt-2 text-sm sm:text-base md:text-lg px-4">
          Building AI solutions in the real world
         </p>
       </div>

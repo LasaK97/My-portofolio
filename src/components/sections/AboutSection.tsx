@@ -63,7 +63,7 @@ export const AboutSection = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-20 md:py-20 lg:py-24"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-28"
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <motion.h2 
@@ -73,7 +73,7 @@ export const AboutSection = () => {
             y: isVisible ? 0 : -30 
           }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-center mt-2 mb-4 md:mb-8 lg:mb-12 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0"
         >
           About Me
         </motion.h2>
@@ -126,22 +126,22 @@ export const AboutSection = () => {
                 transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
               >
                 <div className="space-y-4 text-gray-300 font-roboto">
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-6">
                     Hi, I&apos;m Lasantha
                   </h3>
-                  <p className="text-base lg:text-lg leading-relaxed text-justify">
+                  <p className="text-sm md:text-base lg:text-lg leading-relaxed text-justify">
                     I am a Data Scientist and AI Engineer with over a year of experience, 
                     passionate about transforming AI research into real-world applications. My work 
                     focuses on developing intelligent systems that solve complex problems and drive meaningful impact.
                   </p>
-                  <p className="text-base lg:text-lg leading-relaxed text-justify">
+                  <p className="text-sm md:text-base lg:text-lg leading-relaxed text-justify">
                     With hands-on experience in building AI models, I have worked on projects 
                     that deepen my understanding 
                     of machine learning, deep learning, and data-driven decision-making. 
                     I am committed to exploring advancements in AI, ensuring that cutting-edge research 
                     translates into practical and scalable solutions.
                   </p>
-                  <p className="text-base lg:text-lg leading-relaxed text-justify">
+                  <p className="text-sm md:text-base lg:text-lg leading-relaxed text-justify">
                     Currently, I am focused on developing AI-driven systems that 
                     enhance accessibility and efficiency in real-world applications.
                     My goal is to bridge the gap between theory and practice, creating 
@@ -186,7 +186,7 @@ export const AboutSection = () => {
                         {[...techWords.row1, ...techWords.row1, ...techWords.row1].map((word, index) => (
                           <span
                             key={`row1-${index}`}
-                            className={`inline-block text-xl lg:text-2xl xl:text-3xl font-bold font-orbitron transition-all duration-500 ${
+                            className={`inline-block text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold font-orbitron transition-all duration-500 ${
                               highlightedWords.has(word)
                                 ? 'text-transparent bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text scale-110 drop-shadow-2xl'
                                 : 'text-gray-200/90 drop-shadow-lg'
@@ -204,7 +204,7 @@ export const AboutSection = () => {
                         {[...techWords.row2, ...techWords.row2, ...techWords.row2].map((word, index) => (
                           <span
                             key={`row2-${index}`}
-                            className={`inline-block text-xl lg:text-2xl xl:text-3xl font-bold font-orbitron transition-all duration-500 ${
+                            className={`inline-block text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold font-orbitron transition-all duration-500 ${
                               highlightedWords.has(word)
                                 ? 'text-transparent bg-gradient-to-r from-tertiary via-primary to-secondary bg-clip-text scale-110 drop-shadow-2xl'
                                 : 'text-gray-200/90 drop-shadow-lg'
@@ -222,7 +222,7 @@ export const AboutSection = () => {
                         {[...techWords.row3, ...techWords.row3, ...techWords.row3].map((word, index) => (
                           <span
                             key={`row3-${index}`}
-                            className={`inline-block text-xl lg:text-2xl xl:text-3xl font-bold font-orbitron transition-all duration-500 ${
+                            className={`inline-block text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold font-orbitron transition-all duration-500 ${
                               highlightedWords.has(word)
                                 ? 'text-transparent bg-gradient-to-r from-secondary via-tertiary to-primary bg-clip-text scale-110 drop-shadow-2xl'
                                 : 'text-gray-200/90 drop-shadow-lg'
@@ -256,7 +256,7 @@ export const AboutSection = () => {
               transition={{ duration: 1, ease: "easeOut" }}
               className="flex justify-center"
             >
-              <div className="relative w-64 sm:w-80 md:w-96">
+              <div className="relative w-48 sm:w-64 md:w-80">
                 <div className="relative aspect-[3/4] rounded-xl overflow-hidden group">
                   {/* Animated gradient border */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-tertiary rounded-xl blur-sm opacity-75 group-hover:opacity-100 animate-gradient-x transition-opacity duration-300" />
@@ -289,19 +289,19 @@ export const AboutSection = () => {
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             >
               <div className="space-y-4 text-gray-300 font-roboto text-justify px-4">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-4">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent mb-4 text-center sm:text-left">
                   Hi, I&apos;m Lasantha
                 </h3>
-                <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">
+                <p className="text-xs sm:text-sm md:text-base leading-relaxed text-justify">
                   I am a Data Scientist and AI Engineer with over a year of experience, 
                   passionate about transforming AI research into real-world applications. My work 
                   focuses on developing intelligent systems that solve complex problems and drive meaningful impact.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">
+                <p className="text-xs sm:text-sm md:text-base leading-relaxed text-justify">
                   With hands-on experience in building AI models, I have worked on projects 
                   that deepen my understanding of machine learning, deep learning, and data-driven decision-making.
                 </p>
-                <p className="text-sm sm:text-base md:text-lg leading-relaxed text-justify">
+                <p className="text-xs sm:text-sm md:text-base leading-relaxed text-justify">
                   Currently, I am focused on developing AI-driven systems that 
                   enhance accessibility and efficiency in real-world applications.
                 </p>
@@ -341,7 +341,7 @@ export const AboutSection = () => {
                       {[...techWords.mobile, ...techWords.mobile].map((word, index) => (
                         <span
                           key={`mobile-${index}`}
-                          className={`inline-block text-base sm:text-lg md:text-xl font-bold font-orbitron transition-all duration-500 ${
+                          className={`inline-block text-sm sm:text-base md:text-lg font-bold font-orbitron transition-all duration-500 ${
                             highlightedWords.has(word)
                               ? 'text-transparent bg-gradient-to-r from-primary via-secondary to-tertiary bg-clip-text scale-110 drop-shadow-2xl'
                               : 'text-gray-200/90 drop-shadow-lg'

@@ -180,12 +180,12 @@ const SkillsSection = () => {
   };
 
   return (
-    <section id="skills" className="min-h-screen py-20 md:py-20 lg:py-24 relative" ref={sectionRef}>
+    <section id="skills" className="min-h-screen py-16 sm:py-20 md:py-24 lg:py-28 relative" ref={sectionRef}>
       <div className="container mx-auto px-4">
-        <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-center mt-2 mb-4 md:mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
           Technical Arsenal
         </h2>
-        <p className="text-medium-gray text-center mb-24 text-lg">
+        <p className="text-medium-gray text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 text-sm sm:text-base md:text-lg">
           AI/ML expertise & cutting-edge technologies
         </p>
 
@@ -208,19 +208,19 @@ const SkillsSection = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
                 {/* 15% transparency glass card */}
-                <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
+                <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-4 sm:p-5 md:p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <category.icon className="w-7 h-7 text-neon-orange" />
+                      <category.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-neon-orange" />
                       <div>
-                        <h3 className="text-xl font-bold text-off-white font-orbitron">
+                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-off-white font-orbitron">
                           {category.title}
                         </h3>
-                        <p className="text-sm text-secondary-accent font-medium">{category.experience}</p>
+                        <p className="text-xs sm:text-sm text-secondary-accent font-medium">{category.experience}</p>
                       </div>
                     </div>
                     <ChevronDown 
-                      className={`w-6 h-6 text-neon-orange transition-all duration-500 ${
+                      className={`w-5 h-5 sm:w-6 sm:h-6 text-neon-orange transition-all duration-500 ${
                         expandedCategory === category.id ? 'rotate-180' : 'rotate-0 hover:scale-110'
                       }`}
                     />
@@ -235,7 +235,7 @@ const SkillsSection = () => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-6 mt-6 pt-4 border-t border-neon-orange/20">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-4 sm:mt-6 pt-4 border-t border-neon-orange/20">
                           {category.skills.map((skill, index) => (
                             <SkillCircle
                               key={skill.name}

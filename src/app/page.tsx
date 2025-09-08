@@ -81,32 +81,32 @@ export default function Home() {
               </section>
 
               {/* About Section */}
-              <section id="about" className="relative min-h-screen" aria-label="About Lasantha Kulasooriya">
+              <section id="about" className="relative min-h-[100dvh] md:min-h-screen" aria-label="About Lasantha Kulasooriya">
                 <AboutSection />
               </section>
 
               {/* Experience Section */}
-              <section id="experience" className="relative min-h-screen" aria-label="Professional Experience">
+              <section id="experience" className="relative min-h-[100dvh] md:min-h-screen" aria-label="Professional Experience">
                 <ExperienceSection />
               </section>
 
               {/* Education Section */}
-              <section id="education" className="relative min-h-screen" aria-label="Education Background">
+              <section id="education" className="relative min-h-[100dvh] md:min-h-screen" aria-label="Education Background">
                 <EducationSection />
               </section>
 
               {/* Skills Section */}
-              <section id="skills" className="relative min-h-screen" aria-label="Technical Skills and Expertise">
+              <section id="skills" className="relative min-h-[100dvh] md:min-h-screen" aria-label="Technical Skills and Expertise">
                 <SkillsSection />
               </section>
 
               {/* Projects Section */}
-              <section id="projects" className="relative min-h-screen" aria-label="Portfolio Projects">
+              <section id="projects" className="relative min-h-[100dvh] md:min-h-screen" aria-label="Portfolio Projects">
                 <ProjectsSection />
               </section>
 
               {/* Contact Section */}
-              <section id="contact" className="relative min-h-screen" aria-label="Contact Information">
+              <section id="contact" className="relative min-h-[100dvh] md:min-h-screen" aria-label="Contact Information">
                 <ContactSection />
               </section>
             </main>

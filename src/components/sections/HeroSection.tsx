@@ -106,7 +106,7 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ fontFamily: 'Heeli, sans-serif' }}>
-      <div className="w-full lg:w-1/2 px-4 md:px-8 lg:pl-12 lg:pr-8 xl:pl-20 xl:pr-12 relative z-10 flex items-center justify-center min-h-screen">
+      <div className="w-full lg:w-1/2 px-4 sm:px-6 md:px-8 lg:pl-12 lg:pr-8 xl:pl-20 xl:pr-12 relative z-10 flex items-center justify-center min-h-screen py-20 lg:py-0">
         <div className="w-full flex justify-center lg:justify-end">
           {/* Left side - Content */}
           <div className="w-full max-w-xl text-center lg:text-left">
@@ -130,7 +130,7 @@ const HeroSection = () => {
 
               {/* Name - ONLY NAME IS ENLARGED */}
               <motion.h1 
-                className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
               initial={{ opacity: 0, y: 80, scale: 0.8, filter: "blur(15px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -149,7 +149,7 @@ const HeroSection = () => {
 
               {/* Title with Typing Animation - NORMAL SIZE */}
               <motion.h2 
-                className="text-sm sm:text-base md:text-xl lg:text-2xl font-semibold text-off-white mb-4 sm:mb-6 h-8 sm:h-10 md:h-12 flex items-center justify-center lg:justify-start"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-off-white mb-4 sm:mb-6 h-8 sm:h-10 md:h-12 flex items-center justify-center lg:justify-start"
               initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -200,7 +200,7 @@ const HeroSection = () => {
 
               {/* Small Description */}
               <motion.p 
-                className="text-light-gray text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 text-justify max-w-lg px-4 sm:px-0"
+                className="text-light-gray text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 text-justify max-w-full lg:max-w-lg px-4 sm:px-6 lg:px-0"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -359,8 +359,34 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Image positioned absolutely to align with page edges */}
-      <div className="hidden lg:block absolute bottom-0 right-0 h-screen" style={{ width: '50%' }}>
+      {/* Mobile/Tablet Image */}
+      <div className="lg:hidden w-full mt-8 px-4 sm:px-6 md:px-8">
+        <motion.div 
+          className="relative w-full max-w-md mx-auto aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ 
+            y: animationState === 'visible' ? 0 : 50,
+            opacity: animationState === 'visible' ? 1 : 0
+          }}
+          transition={{ 
+            duration: 0.8, 
+            delay: animationState === 'visible' ? (isFirstLoad ? 1.9 : 0.9) : 0,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
+        >
+          <Image
+            src="/images/intro-page-pic.png"
+            alt="Lasantha Kulasooriya - AI Engineer and Data Scientist"
+            fill
+            className="object-contain object-center"
+            priority
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw"
+          />
+        </motion.div>
+      </div>
+
+      {/* Desktop Image positioned absolutely to align with page edges */}
+      <div className="hidden lg:block absolute bottom-0 right-0 h-screen lg:w-1/2 xl:w-1/2">
         <motion.div 
           className="relative w-full h-full flex items-end justify-start pl-8"
           initial={{ x: '100%', opacity: 0 }}

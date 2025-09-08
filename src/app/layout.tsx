@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BackgroundProvider from '../components/providers/BackgroundProvider';
@@ -98,6 +98,12 @@ export const metadata: Metadata = {
   },
   category: 'technology',
   classification: 'portfolio'
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({

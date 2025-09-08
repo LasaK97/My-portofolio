@@ -211,7 +211,7 @@ const ProjectsSection = () => {
     <section 
       ref={sectionRef}
       id="projects" 
-      className="min-h-screen py-20 md:py-20 lg:py-24 relative"
+      className="min-h-screen py-16 sm:py-20 md:py-24 lg:py-28 relative"
     >
       <motion.div
         initial={{ y: 50, scale: 0.95 }}
@@ -220,19 +220,19 @@ const ProjectsSection = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="container mx-auto px-4"
       >
-        <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold text-center mt-2 mb-4 md:mb-2 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-center mt-2 mb-4 md:mb-6 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent font-orbitron uppercase tracking-wide px-4 sm:px-0">
           Projects
         </h2>
-        <p className="text-medium-gray text-center mb-24 text-lg">
+        <p className="text-medium-gray text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 text-sm sm:text-base md:text-lg">
           My AI & ML innovations in action
         </p>
 
         {/* Projects Carousel */}
-        <div className="relative max-w-4xl mx-auto mb-16">
+        <div className="relative max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16">
           {/* Navigation Arrows - Fixed position */}
           <motion.button
             onClick={prevSlide}
-            className="absolute -left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10"
+            className="absolute left-2 sm:left-4 md:-left-8 lg:-left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10 bg-black/50 rounded-full p-1 sm:p-2 md:bg-transparent md:p-0"
             whileHover={{ 
               color: "#06b6d4",
               scale: 1.05
@@ -246,11 +246,11 @@ const ProjectsSection = () => {
               damping: 25
             }}
           >
-            <ChevronLeft size={32} />
+            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
           </motion.button>
           <motion.button
             onClick={nextSlide}
-            className="absolute -right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10"
+            className="absolute right-2 sm:right-4 md:-right-8 lg:-right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10 bg-black/50 rounded-full p-1 sm:p-2 md:bg-transparent md:p-0"
             whileHover={{ 
               color: "#06b6d4",
               scale: 1.05
@@ -264,7 +264,7 @@ const ProjectsSection = () => {
               damping: 25
             }}
           >
-            <ChevronRight size={32} />
+            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
           </motion.button>
 
           {/* Project Card */}
@@ -291,10 +291,10 @@ const ProjectsSection = () => {
             <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
             <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
             {/* 15% transparency glass card */}
-            <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
-              <div className="flex flex-col md:flex-row items-stretch">
+            <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-4 sm:p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
+              <div className="flex flex-col lg:flex-row items-stretch">
                 {/* Project Image */}
-                <div className="md:w-1/2 relative aspect-[16/9] md:aspect-[4/3] rounded-lg overflow-hidden">
+                <div className="w-full lg:w-1/2 relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-lg overflow-hidden mb-4 lg:mb-0">
                   <Image
                     src={projects[currentIndex].image}
                     alt={projects[currentIndex].title}
@@ -304,11 +304,11 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Project Info */}
-                <div className="md:w-1/2 p-4 md:p-6 flex flex-col">
-                  <h3 className="flex flex-col lg:flex-row items-baseline gap-2 lg:gap-3 text-lg">
+                <div className="w-full lg:w-1/2 lg:p-4 lg:pl-6 flex flex-col">
+                  <h3 className="flex flex-col items-baseline gap-2 text-base sm:text-lg lg:text-xl">
                     <span className="font-bold text-neon-orange font-orbitron">{projects[currentIndex].title}</span>
                   </h3>
-                  <p className="text-off-white text-sm mt-3 leading-relaxed text-justify">
+                  <p className="text-off-white text-xs sm:text-sm mt-3 leading-relaxed text-justify">
                     {projects[currentIndex].description}
                   </p>
 
