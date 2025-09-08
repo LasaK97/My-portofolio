@@ -106,10 +106,12 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden" style={{ fontFamily: 'Heeli, sans-serif' }}>
-      <div className="w-full lg:w-1/2 px-4 sm:px-6 md:px-8 lg:pl-12 lg:pr-8 xl:pl-20 xl:pr-12 relative z-10 flex items-center justify-center min-h-screen py-20 lg:py-0">
-        <div className="w-full flex justify-center lg:justify-end">
-          {/* Left side - Content */}
-          <div className="w-full max-w-xl text-center lg:text-left">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block w-full min-h-screen relative">
+        <div className="w-full min-h-screen flex">
+          {/* Left Content Section - Desktop */}
+          <div className="w-1/2 flex items-center justify-end px-8 lg:px-12 xl:px-16 relative z-10">
+            <div className="w-full max-w-xl text-left lg:mr-8 xl:mr-12">
               {/* Greeting */}
               <motion.p 
                 className="text-cyber-cyan text-lg md:text-xl font-orbitron font-medium mb-4"
@@ -128,9 +130,317 @@ const HeroSection = () => {
                 Hello, I&apos;m
               </motion.p>
 
-              {/* Name - ONLY NAME IS ENLARGED */}
+              {/* Name */}
               <motion.h1 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
+                className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
+                initial={{ opacity: 0, y: 80, scale: 0.8, filter: "blur(15px)" }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -80 : 80,
+                  scale: animationState === 'visible' ? 1 : 0.8,
+                  filter: animationState === 'visible' ? "blur(0px)" : "blur(15px)"
+                }}
+                transition={{ 
+                  duration: 1, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 0.5 : 0.2) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                Lasantha<br />Kulasooriya
+              </motion.h1>
+
+              {/* Title with Typing Animation */}
+              <motion.h2 
+                className="text-lg lg:text-xl xl:text-2xl font-semibold text-off-white mb-6 h-12 flex items-center justify-start"
+                initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -60 : 60,
+                  filter: animationState === 'visible' ? "blur(0px)" : "blur(10px)"
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 0.7 : 0.3) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                <span>And I&apos;m a </span>
+                <span className="text-cyber-cyan ml-2">
+                  {currentTypeText}
+                </span>
+                {showCursor && <span className="animate-pulse text-cyber-cyan ml-1 text-2xl lg:text-3xl">|</span>}
+              </motion.h2>
+
+              {/* Rotating Phrases */}
+              <motion.div 
+                className="h-10 mb-6 overflow-hidden"
+                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -40 : 40,
+                  filter: animationState === 'visible' ? "blur(0px)" : "blur(8px)"
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 0.9 : 0.4) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.p 
+                    key={currentPhraseIndex}
+                    className="text-light-gray text-lg leading-relaxed flex items-center justify-start h-full"
+                    initial={{ x: -50, opacity: 0, filter: "blur(5px)" }}
+                    animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+                    exit={{ x: 50, opacity: 0, filter: "blur(5px)" }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  >
+                    {rotatingPhrases[currentPhraseIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </motion.div>
+
+              {/* Small Description */}
+              <motion.p 
+                className="text-light-gray text-base leading-relaxed mb-6 text-justify max-w-lg"
+                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -30 : 30,
+                  filter: animationState === 'visible' ? "blur(0px)" : "blur(8px)"
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 1.1 : 0.5) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                I specialize in developing and deploying intelligent systems, leveraging expertise in machine learning, 
+                deep learning, and data science to translate complex challenges into impactful, data-driven solutions.
+              </motion.p>
+
+              {/* Social Links */}
+              <motion.div 
+                className="flex justify-start gap-4 mb-8"
+                initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -40 : 40,
+                  scale: animationState === 'visible' ? 1 : 0.9
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 1.3 : 0.6) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative w-12 h-12 bg-gradient-to-r from-neon-orange to-hot-pink rounded-lg flex items-center justify-center text-white transition-all duration-500"
+                    initial={{ opacity: 0, scale: 0.5, y: 50 }}
+                    animate={{ 
+                      opacity: animationState === 'visible' ? 1 : 0,
+                      scale: animationState === 'visible' ? 1 : 0.5,
+                      y: animationState === 'visible' ? 0 : 50
+                    }}
+                    transition={{
+                      duration: 0.5, 
+                      delay: (isFirstLoad ? 1.4 : 0.7) + index * 0.1, 
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                    whileHover={{ 
+                      scale: 1.08, 
+                      y: -3,
+                      boxShadow: "0 15px 35px rgba(6, 182, 212, 0.4)",
+                      transition: { type: "spring", stiffness: 500, damping: 15 }
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="relative z-10">
+                      <social.icon size={20} />
+                    </span>
+                  </motion.a>
+                ))}
+              </motion.div>
+
+              {/* Action Buttons */}
+              <motion.div 
+                className="flex flex-row gap-4 justify-start mb-6"
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -50 : 50,
+                  scale: animationState === 'visible' ? 1 : 0.9
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 1.5 : 0.7) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                <motion.button
+                  onClick={scrollToProjects}
+                  className="w-56 bg-gradient-to-r from-neon-orange to-neon-purple text-white px-8 py-3 rounded-lg text-base font-semibold flex items-center justify-center gap-2 transition-all duration-500"
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -3,
+                    boxShadow: "0 15px 35px rgba(6, 182, 212, 0.4)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ 
+                    x: animationState === 'visible' ? 0 : -30,
+                    opacity: animationState === 'visible' ? 1 : 0
+                  }}
+                  transition={{ 
+                    delay: isFirstLoad ? 1.6 : 0.8,
+                    type: "spring", 
+                    stiffness: 500, 
+                    damping: 15
+                  }}
+                >
+                  <ExternalLink size={18} />
+                  <span>Explore Projects</span>
+                </motion.button>
+                
+                <div className="relative p-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-lg animate-gradient-x w-56">
+                  <motion.a
+                    href="#contact"
+                    className="w-full bg-void-black px-8 py-3 rounded-lg text-base font-semibold flex items-center justify-center gap-2 transition-all duration-500"
+                    initial={{ x: 30, opacity: 0 }}
+                    animate={{ 
+                      x: animationState === 'visible' ? 0 : 30,
+                      opacity: animationState === 'visible' ? 1 : 0
+                    }}
+                    whileHover={{ 
+                      scale: 1.08,
+                      y: -3,
+                      boxShadow: "0 15px 35px rgba(139, 92, 246, 0.4)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ 
+                      delay: isFirstLoad ? 1.7 : 0.9,
+                      type: "spring", 
+                      stiffness: 500, 
+                      damping: 15
+                    }}
+                  >
+                    <Mail size={18} className="text-neon-orange" style={{ filter: 'drop-shadow(0 0 2px #8b5cf6)' }} />
+                    <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">Contact Me</span>
+                  </motion.a>
+                </div>
+              </motion.div>
+
+              {/* Available for opportunities */}
+              <motion.div 
+                className="flex items-center justify-start gap-2"
+                initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
+                animate={{
+                  opacity: animationState === 'visible' ? 1 : 0,
+                  y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -20 : 20,
+                  filter: animationState === 'visible' ? "blur(0px)" : "blur(5px)"
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: animationState === 'visible' ? (isFirstLoad ? 1.8 : 0.8) : 0, 
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                <div className="relative">
+                  <div className="w-2 h-2 bg-green-500 rounded-full" style={{animation: 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'}}></div>
+                  <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-75" style={{animation: 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite'}}></div>
+                </div>
+                <span className="text-light-gray text-sm">Available for AI/ML opportunities</span>
+              </motion.div>
+            </div>
+          </div>
+          
+          {/* Right Image Section - Desktop */}
+          <div className="w-1/2 relative min-h-screen flex items-end justify-start">
+            <motion.div 
+              className="relative w-full h-[90%] pl-0 lg:pl-4"
+              initial={{ x: 100, opacity: 0 }}
+              animate={{ 
+                x: 0,
+                opacity: 1
+              }}
+              transition={{ 
+                duration: 1.2, 
+                delay: isFirstLoad ? 0.3 : 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+            >
+              <Image
+                src="/images/intro-page-pic.png"
+                alt="Lasantha Kulasooriya - AI Engineer and Data Scientist"
+                fill
+                className="object-contain object-bottom"
+                priority
+                sizes="50vw"
+                style={{ objectPosition: 'bottom left' }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile/Tablet Layout */}
+      <div className="lg:hidden flex flex-col w-full min-h-screen">
+        {/* Mobile Image at Top */}
+        <div className="w-full px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-4 sm:pb-6">
+          <motion.div 
+            className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto aspect-[4/3] sm:aspect-[3/2] md:aspect-[16/10]"
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ 
+              y: animationState === 'visible' ? 0 : -50,
+              opacity: animationState === 'visible' ? 1 : 0
+            }}
+            transition={{ 
+              duration: 0.8, 
+              delay: animationState === 'visible' ? (isFirstLoad ? 0.3 : 0.1) : 0,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
+          >
+            <Image
+              src="/images/intro-page-pic.png"
+              alt="Lasantha Kulasooriya - AI Engineer and Data Scientist"
+              fill
+              className="object-contain object-center"
+              priority
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw"
+            />
+          </motion.div>
+        </div>
+
+        {/* Mobile Content Below Image */}
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8 pb-20">
+          <div className="w-full max-w-xl text-center">
+            {/* All mobile content here - duplicated for mobile layout */}
+            {/* Greeting */}
+            <motion.p 
+              className="text-cyber-cyan text-base sm:text-lg font-orbitron font-medium mb-4"
+              initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+              animate={{
+                opacity: animationState === 'visible' ? 1 : 0,
+                y: animationState === 'visible' ? 0 : animationState === 'hidden' ? -50 : 50,
+                filter: animationState === 'visible' ? "blur(0px)" : "blur(10px)"
+              }}
+              transition={{ 
+                duration: 0.8, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 0.5 : 0.2) : 0, 
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+            >
+              Hello, I&apos;m
+            </motion.p>
+
+            {/* Name */}
+            <motion.h1 
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 font-orbitron bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent leading-tight"
               initial={{ opacity: 0, y: 80, scale: 0.8, filter: "blur(15px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -140,16 +450,16 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 1, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 0.5 : 0.2) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 0.7 : 0.3) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
-                Lasantha<br />Kulasooriya
-              </motion.h1>
+              Lasantha<br />Kulasooriya
+            </motion.h1>
 
-              {/* Title with Typing Animation - NORMAL SIZE */}
-              <motion.h2 
-                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-off-white mb-4 sm:mb-6 h-8 sm:h-10 md:h-12 flex items-center justify-center lg:justify-start"
+            {/* Title with Typing Animation */}
+            <motion.h2 
+              className="text-sm sm:text-base md:text-lg font-semibold text-off-white mb-4 sm:mb-6 h-8 sm:h-10 flex items-center justify-center"
               initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -158,7 +468,7 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 0.8, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 0.7 : 0.3) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 0.9 : 0.4) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
@@ -166,12 +476,12 @@ const HeroSection = () => {
               <span className="text-cyber-cyan ml-2">
                 {currentTypeText}
               </span>
-              {showCursor && <span className="animate-pulse text-cyber-cyan ml-1 text-xl md:text-2xl lg:text-3xl">|</span>}
-              </motion.h2>
+              {showCursor && <span className="animate-pulse text-cyber-cyan ml-1 text-xl md:text-2xl">|</span>}
+            </motion.h2>
 
-              {/* Rotating Phrases */}
-              <motion.div 
-                className="h-8 md:h-10 mb-6 overflow-hidden"
+            {/* Rotating Phrases */}
+            <motion.div 
+              className="h-8 md:h-10 mb-6 overflow-hidden"
               initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -180,14 +490,14 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 0.8, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 0.9 : 0.4) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 1.1 : 0.5) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
               <AnimatePresence mode="wait">
                 <motion.p 
                   key={currentPhraseIndex}
-                  className="text-light-gray text-base md:text-lg leading-relaxed flex items-center justify-center lg:justify-start h-full"
+                  className="text-light-gray text-base md:text-lg leading-relaxed flex items-center justify-center h-full"
                   initial={{ x: -50, opacity: 0, filter: "blur(5px)" }}
                   animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
                   exit={{ x: 50, opacity: 0, filter: "blur(5px)" }}
@@ -198,9 +508,9 @@ const HeroSection = () => {
               </AnimatePresence>
             </motion.div>
 
-              {/* Small Description */}
-              <motion.p 
-                className="text-light-gray text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 text-justify max-w-full lg:max-w-lg px-4 sm:px-6 lg:px-0"
+            {/* Small Description */}
+            <motion.p 
+              className="text-light-gray text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 text-justify px-4 sm:px-6"
               initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -209,7 +519,7 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 0.8, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 1.1 : 0.5) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 1.3 : 0.6) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
@@ -217,9 +527,9 @@ const HeroSection = () => {
               deep learning, and data science to translate complex challenges into impactful, data-driven solutions.
             </motion.p>
 
-              {/* Social Links */}
-              <motion.div 
-                className="flex justify-center lg:justify-start gap-4 mb-8"
+            {/* Social Links */}
+            <motion.div 
+              className="flex justify-center gap-4 mb-8"
               initial={{ opacity: 0, y: 40, scale: 0.9 }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -228,7 +538,7 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 0.8, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 1.3 : 0.6) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 1.5 : 0.7) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
@@ -247,7 +557,7 @@ const HeroSection = () => {
                   }}
                   transition={{
                     duration: 0.5, 
-                    delay: (isFirstLoad ? 1.4 : 0.7) + index * 0.1, 
+                    delay: (isFirstLoad ? 1.6 : 0.8) + index * 0.1, 
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                   whileHover={{ 
@@ -265,9 +575,9 @@ const HeroSection = () => {
               ))}
             </motion.div>
 
-              {/* Action Buttons */}
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6"
+            {/* Action Buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-6"
               initial={{ opacity: 0, y: 50, scale: 0.9 }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -276,7 +586,7 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 0.8, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 1.5 : 0.7) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 1.7 : 0.8) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
@@ -295,7 +605,7 @@ const HeroSection = () => {
                   opacity: animationState === 'visible' ? 1 : 0
                 }}
                 transition={{ 
-                  delay: isFirstLoad ? 1.6 : 0.8,
+                  delay: isFirstLoad ? 1.8 : 0.9,
                   type: "spring", 
                   stiffness: 500, 
                   damping: 15
@@ -321,7 +631,7 @@ const HeroSection = () => {
                   }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ 
-                    delay: isFirstLoad ? 1.7 : 0.9,
+                    delay: isFirstLoad ? 1.9 : 1.0,
                     type: "spring", 
                     stiffness: 500, 
                     damping: 15
@@ -333,9 +643,9 @@ const HeroSection = () => {
               </div>
             </motion.div>
 
-              {/* Available for opportunities */}
-              <motion.div 
-                className="flex items-center justify-center lg:justify-start gap-2 mb-8"
+            {/* Available for opportunities */}
+            <motion.div 
+              className="flex items-center justify-center gap-2"
               initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
               animate={{
                 opacity: animationState === 'visible' ? 1 : 0,
@@ -344,7 +654,7 @@ const HeroSection = () => {
               }}
               transition={{ 
                 duration: 0.8, 
-                delay: animationState === 'visible' ? (isFirstLoad ? 1.8 : 0.8) : 0, 
+                delay: animationState === 'visible' ? (isFirstLoad ? 2.0 : 0.9) : 0, 
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
@@ -355,109 +665,54 @@ const HeroSection = () => {
               <span className="text-light-gray text-sm">Available for AI/ML opportunities</span>
             </motion.div>
           </div>
-
         </div>
       </div>
-      
-      {/* Mobile/Tablet Image */}
-      <div className="lg:hidden w-full mt-8 px-4 sm:px-6 md:px-8">
-        <motion.div 
-          className="relative w-full max-w-md mx-auto aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ 
-            y: animationState === 'visible' ? 0 : 50,
-            opacity: animationState === 'visible' ? 1 : 0
-          }}
-          transition={{ 
-            duration: 0.8, 
-            delay: animationState === 'visible' ? (isFirstLoad ? 1.9 : 0.9) : 0,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
-        >
-          <Image
-            src="/images/intro-page-pic.png"
-            alt="Lasantha Kulasooriya - AI Engineer and Data Scientist"
-            fill
-            className="object-contain object-center"
-            priority
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw"
-          />
-        </motion.div>
-      </div>
 
-      {/* Desktop Image positioned absolutely to align with page edges */}
-      <div className="hidden lg:block absolute bottom-0 right-0 h-screen lg:w-1/2 xl:w-1/2">
-        <motion.div 
-          className="relative w-full h-full flex items-end justify-start pl-8"
-          initial={{ x: '100%', opacity: 0 }}
-          animate={{ 
-            x: animationState === 'visible' ? 0 : animationState === 'hidden' ? '100%' : '100%',
-            opacity: animationState === 'visible' ? 1 : 0
-          }}
-          exit={{ x: '100%', opacity: 0 }}
-          transition={{ 
-            duration: 1.2, 
-            delay: animationState === 'visible' ? (isFirstLoad ? 0.3 : 0.1) : 0,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
-        >
-          <Image
-            src="/images/intro-page-pic.png"
-            alt="Lasantha Kulasooriya - AI Engineer and Data Scientist with futuristic technology background showcasing neural networks and machine learning concepts"
-            fill
-            className="object-contain object-bottom"
-            priority
-            sizes="(min-width: 1024px) 50vw"
-            style={{ objectPosition: 'bottom left' }}
-          />
-        </motion.div>
-      </div>
-
-      {/* Scroll indicator - only show on home section */}
+      {/* Scroll indicator */}
       {showScrollIndicator && (
         <motion.div 
           className="fixed bottom-8 left-0 right-0 text-medium-gray z-40 flex justify-center"
-            initial={{ opacity: 0, y: 50, scale: 0.8 }}
-            animate={{
-              opacity: animationState === 'visible' ? 1 : 0,
-              y: animationState === 'visible' ? 0 : animationState === 'hidden' ? 50 : 50,
-              scale: animationState === 'visible' ? 1 : 0.8
-            }}
-            transition={{ 
-              duration: 0.8, 
-              delay: animationState === 'visible' ? (isFirstLoad ? 2.0 : 1.0) : 0,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-          >
-            <div className="flex flex-col items-center">
+          initial={{ opacity: 0, y: 50, scale: 0.8 }}
+          animate={{
+            opacity: animationState === 'visible' ? 1 : 0,
+            y: animationState === 'visible' ? 0 : animationState === 'hidden' ? 50 : 50,
+            scale: animationState === 'visible' ? 1 : 0.8
+          }}
+          transition={{ 
+            duration: 0.8, 
+            delay: animationState === 'visible' ? (isFirstLoad ? 2.0 : 1.0) : 0,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
+        >
+          <div className="flex flex-col items-center">
+            <motion.div 
+              className="relative flex flex-col items-center"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span className="text-sm uppercase tracking-wide text-center block">Scroll to explore</span>
               <motion.div 
-                className="relative flex flex-col items-center"
-                whileHover={{ scale: 1.05 }}
-              >
-                <span className="text-sm uppercase tracking-wide text-center block">Scroll to explore</span>
-                <motion.div 
-                  className="h-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-full mt-1 w-32 mx-auto"
-                  animate={{ scaleX: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ transformOrigin: 'center' }}
-                />
-              </motion.div>
-              <motion.div 
-                className="w-px h-8 bg-gradient-to-b from-secondary-accent to-transparent mt-4 mx-auto"
-                animate={{ 
-                  y: [0, 6, 0],
-                  opacity: [0.5, 1, 0.5]
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: 0.3
-                }}
+                className="h-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-full mt-1 w-32 mx-auto"
+                animate={{ scaleX: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transformOrigin: 'center' }}
               />
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+            <motion.div 
+              className="w-px h-8 bg-gradient-to-b from-secondary-accent to-transparent mt-4 mx-auto"
+              animate={{ 
+                y: [0, 6, 0],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: 0.3
+              }}
+            />
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
