@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, Download, ExternalLink, BookOpen } from 'lucide-react';
+import { FaBrain, FaChartLine, FaDatabase, FaRobot, FaCode } from 'react-icons/fa';
+import { HiSparkles } from 'react-icons/hi';
 import { useAnimation } from '../../contexts/AnimationContext';
 
 const HeroSection = () => {
@@ -18,11 +20,11 @@ const HeroSection = () => {
 
   const typeTexts = ['Data Scientist', 'AI/ML Engineer'];
   const rotatingPhrases = [
-    "I am a Data Scientist & AI Engineer.",
-    "I turn data into intelligent solutions.",
-    "I discover meaningful patterns in data.",
-    "I build and optimize AI models.",
-    "I solve complex problems through code."
+    { text: "I am a Data Scientist & AI Engineer.", icon: FaBrain },
+    { text: "I turn data into intelligent solutions.", icon: HiSparkles },
+    { text: "I discover meaningful patterns in data.", icon: FaChartLine },
+    { text: "I build and optimize AI models.", icon: FaRobot },
+    { text: "I solve complex problems through code.", icon: FaCode }
   ];
 
   useEffect(() => {
@@ -187,16 +189,34 @@ const HeroSection = () => {
                 }}
               >
                 <AnimatePresence mode="wait">
-                  <motion.p 
+                  <motion.div 
                     key={currentPhraseIndex}
-                    className="text-light-gray text-lg leading-relaxed flex items-center justify-start h-full"
+                    className="text-light-gray text-lg leading-relaxed flex items-center justify-start h-full gap-3"
                     initial={{ x: -50, opacity: 0, filter: "blur(5px)" }}
                     animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ x: 50, opacity: 0, filter: "blur(5px)" }}
                     transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
-                    {rotatingPhrases[currentPhraseIndex]}
-                  </motion.p>
+                    <div className="relative flex items-center justify-center">
+                      <svg width="0" height="0" className="absolute">
+                        <defs>
+                          <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#3b82f6" />
+                            <stop offset="50%" stopColor="#06b6d4" />
+                            <stop offset="100%" stopColor="#8b5cf6" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      {React.createElement(rotatingPhrases[currentPhraseIndex].icon, {
+                        className: "text-2xl relative z-10",
+                        style: {
+                          fill: 'url(#icon-gradient)',
+                          filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.4))'
+                        }
+                      })}
+                    </div>
+                    <span>{rotatingPhrases[currentPhraseIndex].text}</span>
+                  </motion.div>
                 </AnimatePresence>
               </motion.div>
 
@@ -495,16 +515,34 @@ const HeroSection = () => {
               }}
             >
               <AnimatePresence mode="wait">
-                <motion.p 
+                <motion.div 
                   key={currentPhraseIndex}
-                  className="text-light-gray text-base md:text-lg leading-relaxed flex items-center justify-center h-full"
+                  className="text-light-gray text-base md:text-lg leading-relaxed flex items-center justify-center h-full gap-2"
                   initial={{ x: -50, opacity: 0, filter: "blur(5px)" }}
                   animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
                   exit={{ x: 50, opacity: 0, filter: "blur(5px)" }}
                   transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  {rotatingPhrases[currentPhraseIndex]}
-                </motion.p>
+                  <div className="relative flex items-center justify-center">
+                    <svg width="0" height="0" className="absolute">
+                      <defs>
+                        <linearGradient id="icon-gradient-mobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#3b82f6" />
+                          <stop offset="50%" stopColor="#06b6d4" />
+                          <stop offset="100%" stopColor="#8b5cf6" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    {React.createElement(rotatingPhrases[currentPhraseIndex].icon, {
+                      className: "text-xl md:text-2xl relative z-10",
+                      style: {
+                        fill: 'url(#icon-gradient-mobile)',
+                        filter: 'drop-shadow(0 0 10px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 20px rgba(6, 182, 212, 0.4))'
+                      }
+                    })}
+                  </div>
+                  <span>{rotatingPhrases[currentPhraseIndex].text}</span>
+                </motion.div>
               </AnimatePresence>
             </motion.div>
 
