@@ -293,13 +293,13 @@ export const AboutSection = () => {
                   Hi, I&apos;m Lasantha
                 </h3>
                 <p className="text-xs sm:text-sm md:text-base leading-relaxed text-justify">
-                  I am a dedicated Data Scientist and AI Engineer with over a year of hands-on experience, driven by a passion for transforming cutting-edge AI research into impactful real-world applications. My expertise lies in developing intelligent systems that not only solve complex challenges but also deliver tangible results.
+                  I am a dedicated Data Scientist and AI Engineer driven by a passion for transforming cutting-edge AI research into impactful real-world applications. My expertise lies in developing intelligent systems that not only solve complex challenges but also deliver measurable results.
                 </p>
                 <p className="text-xs sm:text-sm md:text-base leading-relaxed text-justify">
-                  Throughout my career, I have gained extensive experience in building robust AI models, deepening my understanding of machine learning, deep learning, and data-driven decision-making. I am committed to staying at the forefront of AI advancements, ensuring that theoretical knowledge is seamlessly translated into practical, scalable solutions.
+                  I have built a strong foundation in designing and deploying robust AI models, with a deep understanding of machine learning, deep learning, and data-driven decision-making. I am committed to staying at the forefront of AI advancements, ensuring that theoretical knowledge is seamlessly translated into practical, scalable solutions.
                 </p>
                 <p className="text-xs sm:text-sm md:text-base leading-relaxed text-justify">
-                  My current focus is on pioneering AI-driven systems designed to enhance accessibility and efficiency across various real-world applications. My ultimate goal is to bridge the gap between advanced AI theory and practical implementation, creating innovative solutions that make a significant and measurable difference.
+                  My current focus is on pioneering AI-driven systems designed to enhance accessibility and efficiency across diverse real-world domains. My ultimate goal is to bridge the gap between advanced AI theory and practical implementation, creating innovative solutions that drive meaningful impact.
                 </p>
               </div>
             </motion.div>
