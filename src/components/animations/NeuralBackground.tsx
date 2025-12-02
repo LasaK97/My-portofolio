@@ -4,6 +4,9 @@ import React, { useEffect, useRef } from 'react';
 
 const NeuralBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const mouseRef = useRef<{ x: number; y: number } | null>(null);
+  // Cache for pre-rendered particle sprites
+  const spritesRef = useRef<{ [key: string]: HTMLCanvasElement }>({});
 
   useEffect(() => {
     // Check for reduced motion preference
@@ -13,10 +16,64 @@ const NeuralBackground: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { alpha: true }); // Optimize context creation
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    // Set canvas size with pixel ratio for sharpness
+    // Professional 3-color system
+    const colors = [
+      'rgba(59, 130, 246, 0.8)',   // professional-blue
+      'rgba(6, 182, 212, 0.7)',    // professional-cyan  
+      'rgba(139, 92, 246, 0.7)',   // professional-purple
+    ];
+
+    // Pre-render sprites for performance
+    const initSprites = () => {
+      colors.forEach(color => {
+        const spriteCanvas = document.createElement('canvas');
+        const size = 10; // Base render size
+        const padding = 20; // Glow padding
+        const center = size + padding;
+
+        spriteCanvas.width = center * 2;
+        spriteCanvas.height = center * 2;
+
+        const sCtx = spriteCanvas.getContext('2d');
+        if (!sCtx) return;
+
+        // Draw the complex glow effect once per color
+        sCtx.save();
+
+        // Outer glow
+        sCtx.shadowBlur = 15;
+        sCtx.shadowColor = color;
+        sCtx.globalAlpha = 0.4; // Increased visibility
+        sCtx.fillStyle = color;
+        sCtx.beginPath();
+        sCtx.arc(center, center, size * 2, 0, Math.PI * 2);
+        sCtx.fill();
+
+        // Middle glow
+        sCtx.shadowBlur = 10;
+        sCtx.globalAlpha = 0.7; // Increased visibility
+        sCtx.beginPath();
+        sCtx.arc(center, center, size * 1.2, 0, Math.PI * 2);
+        sCtx.fill();
+
+        // Core
+        sCtx.shadowBlur = 5;
+        sCtx.globalAlpha = 1;
+        sCtx.beginPath();
+        sCtx.arc(center, center, size, 0, Math.PI * 2);
+        sCtx.fill();
+
+        sCtx.restore();
+
+        spritesRef.current[color] = spriteCanvas;
+      });
+    };
+
+    initSprites();
+
     const setCanvasSize = () => {
       if (!canvas) return;
       const { innerWidth, innerHeight } = window;
@@ -31,12 +88,22 @@ const NeuralBackground: React.FC = () => {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Define particle count based on screen size - Reduced for better mobile performance
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current = null;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
+
     const getParticleCount = () => {
       const width = window.innerWidth;
-      if (width < 768) return 25;   // Mobile - Further reduced for performance
-      if (width < 1024) return 40;  // Tablet
-      return 60;                   // Desktop - Optimized
+      if (width < 768) return 40;  // Increased for mobile
+      if (width < 1024) return 70; // Increased for tablet
+      return 100;                  // Increased for desktop (More Networks)
     };
 
     class Particle {
@@ -50,102 +117,101 @@ const NeuralBackground: React.FC = () => {
       noiseOffset: { x: number, y: number };
       turbulence: number;
 
+      // Physics
+      pushX: number;
+      pushY: number;
+      friction: number;
+
       constructor(canvas: HTMLCanvasElement) {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
 
-        // More varied and subtle movement
-        this.vx = (Math.random() - 0.5) * 0.15;
-        this.vy = (Math.random() - 0.5) * 0.15;
+        // Moderate speed for drifting
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
 
-        // Add noise offset for more organic movement
         this.noiseOffset = {
           x: Math.random() * 1000,
           y: Math.random() * 1000
         };
 
-        // Turbulence factor for more random movement
-        this.turbulence = Math.random() * 0.2;
-
-        // Base size with more variation
+        this.turbulence = Math.random() * 0.5;
         this.baseSize = Math.random() * 1.5 + 1;
-
         this.size = this.baseSize;
 
-        // Professional 3-color system for consistency
-        const colors = [
-          'rgba(59, 130, 246, 0.8)',   // professional-blue
-          'rgba(6, 182, 212, 0.7)',    // professional-cyan  
-          'rgba(139, 92, 246, 0.7)',   // professional-purple
-        ];
+        this.pushX = 0;
+        this.pushY = 0;
+        this.friction = 0.95; // Standard friction
+
         this.color = colors[Math.floor(Math.random() * colors.length)];
       }
 
       update(canvas: HTMLCanvasElement, time: number) {
-        // More organic, noise-based movement
-        const noiseScaleX = 0.001;
-        const noiseScaleY = 0.001;
+        // Noise movement
+        const noiseScale = 0.001;
+        const noiseX = Math.sin(this.noiseOffset.x + time * noiseScale);
+        const noiseY = Math.cos(this.noiseOffset.y + time * noiseScale);
 
-        // Perlin-like noise simulation
-        const noiseX = Math.sin(this.noiseOffset.x + time * noiseScaleX);
-        const noiseY = Math.cos(this.noiseOffset.y + time * noiseScaleY);
+        // Mouse Repulsion
+        if (mouseRef.current) {
+          const dx = this.x - mouseRef.current.x;
+          const dy = this.y - mouseRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const forceRadius = 250; // Interaction radius
 
-        // Add noise-based movement
-        this.x += this.vx + noiseX * this.turbulence;
-        this.y += this.vy + noiseY * this.turbulence;
+          if (distance < forceRadius) {
+            const force = (forceRadius - distance) / forceRadius;
+            const angle = Math.atan2(dy, dx);
+            const pushStrength = 4; // Strong push
 
-        // Wrap around instead of bouncing
+            this.pushX += Math.cos(angle) * force * pushStrength;
+            this.pushY += Math.sin(angle) * force * pushStrength;
+          }
+        }
+
+        // Apply friction
+        this.pushX *= this.friction;
+        this.pushY *= this.friction;
+
+        // Update position
+        this.x += this.vx + (noiseX * this.turbulence) + this.pushX;
+        this.y += this.vy + (noiseY * this.turbulence) + this.pushY;
+
+        // Wrap around screen (Free floating)
         this.x = (this.x + canvas.width) % canvas.width;
         this.y = (this.y + canvas.height) % canvas.height;
 
-        // Subtle size variation
-        this.size = this.baseSize + Math.sin(time * 0.5) * 0.3;
+        // Pulse size
+        this.size = this.baseSize + Math.sin(time * 2) * 0.5;
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        // Enhanced glow effect for better visibility on dark background
-        ctx.save();
+        const sprite = spritesRef.current[this.color];
+        if (!sprite) return;
 
-        // Optimization: Reduce shadow blur iterations or complexity if needed
-        // For now, keeping the visual effect but ensuring particle count is low on mobile
+        // Draw using pre-rendered sprite
+        const scale = this.size / 10;
+        const size = sprite.width * scale;
+        const offset = size / 2;
 
-        // Outer glow ring
-        ctx.shadowBlur = 15; // Reduced from 30 for performance
-        ctx.shadowColor = this.color;
-        ctx.globalAlpha = 0.3;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Middle glow
-        ctx.shadowBlur = 10; // Reduced from 20
-        ctx.globalAlpha = 0.6;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 1.2, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Core particle - brightest
-        ctx.shadowBlur = 5; // Reduced from 10
-        ctx.globalAlpha = 1;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.restore();
+        ctx.drawImage(sprite, this.x - offset, this.y - offset, size, size);
       }
     }
 
-    // Create particles based on screen size
-    const particleCount = getParticleCount();
-    const particles: Particle[] = Array.from({ length: particleCount }, () => new Particle(canvas));
+    let particles: Particle[] = [];
 
-    // Adaptive connection distance
-    const getConnectionDistance = () => {
-      return window.innerWidth < 768 ? 150 : 180; // Reduced mobile distance
+    const initParticles = () => {
+      const count = getParticleCount();
+      particles = Array.from({ length: count }, () => new Particle(canvas));
     };
 
-    // Animation function
+    initParticles();
+
+    const getConnectionDistance = () => {
+      // Increased connection distance for more networks
+      return window.innerWidth < 768 ? 180 : 250;
+    };
+
     let animationFrameId: number;
     const startTime = Date.now();
 
@@ -153,54 +219,44 @@ const NeuralBackground: React.FC = () => {
       if (!ctx || !canvas) return;
 
       const currentTime = Date.now();
-      const elapsedTime = (currentTime - startTime) / 1000; // in seconds
+      const elapsedTime = (currentTime - startTime) / 1000;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw particles
       particles.forEach(particle => {
         particle.update(canvas, elapsedTime);
         particle.draw(ctx);
       });
 
-      // Get connection distance based on screen size
       const connectionDistance = getConnectionDistance();
 
-      // Draw connections with gradient colors
-      // Optimization: Spatial partitioning could be used here for very large counts, 
-      // but for < 100 particles, O(N^2) is acceptable.
+      // Draw connections
       particles.forEach((p1, i) => {
         particles.slice(i + 1).forEach(p2 => {
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
+          const connDistSq = connectionDistance * connectionDistance;
 
-          if (distance < connectionDistance) {
+          if (distSq < connDistSq) {
+            const distance = Math.sqrt(distSq);
+
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
 
-            // Create gradient between two particles
             const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
             gradient.addColorStop(0, p1.color);
             gradient.addColorStop(1, p2.color);
 
-            // Enhanced connection visibility
-            const opacity = Math.max(0.3, 1 - distance / connectionDistance);
+            // Increased visibility opacity
+            const opacity = Math.max(0.1, (1 - distance / connectionDistance) * 0.8);
 
-            // Add shadow/glow to connections
-            ctx.shadowBlur = 4; // Reduced from 8
-            ctx.shadowColor = p1.color;
             ctx.strokeStyle = gradient;
-
-            // Dynamic line width
-            ctx.lineWidth = Math.max(0.5, (1 - distance / connectionDistance) * 1.5);
-
+            // Increased line width
+            ctx.lineWidth = Math.max(0.5, (1 - distance / connectionDistance) * 2.5);
             ctx.globalAlpha = opacity;
             ctx.stroke();
-
-            // Reset shadow
-            ctx.shadowBlur = 0;
             ctx.globalAlpha = 1;
           }
         });
@@ -209,16 +265,9 @@ const NeuralBackground: React.FC = () => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    // Handle window resize - recreate particles
     const handleResize = () => {
       setCanvasSize();
-
-      // Recreate particles based on new screen size
-      const newParticleCount = getParticleCount();
-      particles.length = 0;
-      for (let i = 0; i < newParticleCount; i++) {
-        particles.push(new Particle(canvas));
-      }
+      initParticles();
     };
 
     window.addEventListener('resize', handleResize);
@@ -227,6 +276,8 @@ const NeuralBackground: React.FC = () => {
     return () => {
       window.removeEventListener('resize', setCanvasSize);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
@@ -239,7 +290,7 @@ const NeuralBackground: React.FC = () => {
       className="fixed inset-0 w-full h-full z-0 pointer-events-none"
       style={{
         background: 'transparent',
-        mixBlendMode: 'screen' // Makes particles pop against dark background
+        mixBlendMode: 'screen'
       }}
     />
   );
