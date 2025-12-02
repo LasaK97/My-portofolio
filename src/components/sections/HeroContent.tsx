@@ -221,7 +221,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
 
             {/* Action Buttons */}
             <motion.div
-                className={`flex ${isMobile ? "flex-col sm:flex-row justify-center" : "flex-row justify-start"} gap-4 mb-6`}
+                className={`flex ${isMobile ? "flex-col sm:flex-row justify-center" : "flex-row justify-start"} gap-3 sm:gap-4 mb-4 sm:mb-6`}
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{
                     opacity: animationState === 'visible' ? 1 : 0,
@@ -236,7 +236,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
             >
                 <motion.button
                     onClick={scrollToProjects}
-                    className={`${isMobile ? "w-full sm:w-56 px-4 py-2 sm:px-8 sm:py-3 text-sm sm:text-base" : "w-56 px-8 py-3 text-base"} bg-gradient-to-r from-neon-orange to-neon-purple text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-500`}
+                    className={`${isMobile ? "w-full sm:w-56 px-4 py-2.5 sm:px-8 sm:py-3 text-sm sm:text-base" : "w-56 px-8 py-3 text-base"} bg-gradient-to-r from-neon-orange to-neon-purple text-white rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-500`}
                     whileHover={{
                         scale: 1.08,
                         y: -3,
@@ -262,7 +262,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
                 <div className={`relative p-0.5 bg-gradient-to-r from-neon-orange to-neon-purple rounded-lg animate-gradient-x ${isMobile ? "w-full sm:w-56" : "w-56"}`}>
                     <motion.a
                         href="#contact"
-                        className={`w-full bg-void-black rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-500 ${isMobile ? "px-4 py-2 sm:px-8 sm:py-3 text-sm sm:text-base" : "px-8 py-3 text-base"}`}
+                        className={`w-full bg-void-black rounded-lg font-semibold flex items-center justify-center gap-2 transition-all duration-500 ${isMobile ? "px-4 py-2.5 sm:px-8 sm:py-3 text-sm sm:text-base" : "px-8 py-3 text-base"}`}
                         initial={{ x: 30, opacity: 0 }}
                         animate={{
                             x: animationState === 'visible' ? 0 : 30,

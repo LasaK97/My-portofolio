@@ -70,7 +70,7 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/LasaK97/My-portofolio",
       technologies: ["Next.js", "Tailwind CSS"]
     },
-        {
+    {
       id: 7,
       title: "Uncovering Health and Economic Patterns: A Factor Analysis of Global Life Expectancy Data",
       description: "This project applies factor analysis to global health and economic data sourced from WHO and the UN, covering 193 countries between 2000–2015. The objective is to reveal latent variables that explain the complex relationships among 22 health-related indicators, including mortality rates, vaccination coverage, GDP, and more. Through data preprocessing and factor extraction using varimax rotation, five key underlying factors were identified: child mortality, adult mortality, body composition and nutrition, economic status, and vaccination coverage. These insights support more informed health policy analysis, though further refinement is recommended as the model may benefit from additional factors for improved accuracy.",
@@ -78,7 +78,7 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/LasaK97/Factor-Analysis-for-the-Life-Expectancy-data-using-R",
       technologies: ["R", "ggplot2", "mice", "psych", "nFactors", "lavaan", "GGally"]
     },
-        {
+    {
       id: 8,
       title: "Discovering Relationships Between Physiology and Fitness: A Canonical Correlation Analysis of Body Performance Data",
       description: "This project applies Canonical Correlation Analysis (CCA) to explore the relationships between physiological characteristics and physical fitness performance using a real-world dataset from the Korean Sports Promotion Foundation. The dataset, sourced from Kaggle, includes health and performance metrics for individuals aged 20 to 64.",
@@ -86,7 +86,7 @@ const ProjectsSection = () => {
       githubUrl: "https://github.com/LasaK97/Canonical-Correlation-Analysis-using-R",
       technologies: ["R", "readr", "dplyr", "ggplot2", "MVN", "CCA", "CCP", "tidyr", "corrr", "psych"]
     },
-    
+
   ];
 
   const [direction, setDirection] = useState(0);
@@ -112,16 +112,16 @@ const ProjectsSection = () => {
   // Auto slideshow effect
   useEffect(() => {
     let slideTimer: NodeJS.Timeout;
-    
+
     // Only run the timer if the section is visible
     if (isVisible) {
       slideTimer = setTimeout(() => {
-        setCurrentIndex(prevIndex => 
+        setCurrentIndex(prevIndex =>
           prevIndex === projects.length - 1 ? 0 : prevIndex + 1
         );
       }, 10000); // Changed to 10 seconds
     }
-    
+
     // Clean up timer when component unmounts or dependencies change
     return () => {
       clearTimeout(slideTimer);
@@ -130,14 +130,14 @@ const ProjectsSection = () => {
 
   const nextSlide = () => {
     setDirection(1);
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === projects.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevSlide = () => {
     setDirection(-1);
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1
     );
   };
@@ -208,9 +208,9 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="projects" 
+      id="projects"
       className="min-h-screen py-16 sm:py-20 md:py-24 lg:py-28 relative"
     >
       <motion.div
@@ -232,12 +232,12 @@ const ProjectsSection = () => {
           {/* Navigation Arrows - Fixed position */}
           <motion.button
             onClick={prevSlide}
-            className="absolute left-2 sm:left-4 md:-left-8 lg:-left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10 bg-black/50 rounded-full p-1 sm:p-2 md:bg-transparent md:p-0"
-            whileHover={{ 
+            className="hidden sm:block absolute left-2 sm:left-4 md:-left-8 lg:-left-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10 bg-black/50 rounded-full p-1 sm:p-2 md:bg-transparent md:p-0"
+            whileHover={{
               color: "#06b6d4",
               scale: 1.05
             }}
-            whileTap={{ 
+            whileTap={{
               scale: 0.9
             }}
             transition={{
@@ -250,12 +250,12 @@ const ProjectsSection = () => {
           </motion.button>
           <motion.button
             onClick={nextSlide}
-            className="absolute right-2 sm:right-4 md:-right-8 lg:-right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10 bg-black/50 rounded-full p-1 sm:p-2 md:bg-transparent md:p-0"
-            whileHover={{ 
+            className="hidden sm:block absolute right-2 sm:right-4 md:-right-8 lg:-right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-cyber-cyan transition-colors z-10 bg-black/50 rounded-full p-1 sm:p-2 md:bg-transparent md:p-0"
+            whileHover={{
               color: "#06b6d4",
               scale: 1.05
             }}
-            whileTap={{ 
+            whileTap={{
               scale: 0.9
             }}
             transition={{
@@ -287,100 +287,100 @@ const ProjectsSection = () => {
               className="relative cursor-grab active:cursor-grabbing w-full"
               style={{ touchAction: 'pan-y' }}
             >
-            {/* 15% transparency gradient border */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
-            {/* 15% transparency glass card */}
-            <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-4 sm:p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
-              <div className="flex flex-col lg:flex-row items-stretch">
-                {/* Project Image */}
-                <div className="w-full lg:w-1/2 relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-lg overflow-hidden mb-4 lg:mb-0">
-                  <Image
-                    src={projects[currentIndex].image}
-                    alt={projects[currentIndex].title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Project Info */}
-                <div className="w-full lg:w-1/2 lg:p-4 lg:pl-6 flex flex-col">
-                  <h3 className="flex flex-col items-baseline gap-2 text-base sm:text-lg lg:text-xl">
-                    <span className="font-bold text-neon-orange font-orbitron">{projects[currentIndex].title}</span>
-                  </h3>
-                  <p className="text-off-white text-xs sm:text-sm mt-3 leading-relaxed text-justify">
-                    {projects[currentIndex].description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {projects[currentIndex].technologies.map((tech, index) => (
-                      <span 
-                        key={index}
-                        className="text-xs px-3 py-1 rounded-full glassmorphism text-cyber-cyan border border-cyber-cyan/30 hover:border-neon-orange/50 transition-all duration-300"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+              {/* 15% transparency gradient border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x blur-sm" />
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-orange via-hot-pink to-cyber-cyan rounded-lg opacity-15 animate-gradient-x" />
+              {/* 15% transparency glass card */}
+              <div className="relative bg-black/15 backdrop-blur-sm border border-white/15 shadow-sm p-4 sm:p-6 rounded-lg hover:bg-black/25 hover:border-white/25 transition-all duration-700">
+                <div className="flex flex-col lg:flex-row items-stretch">
+                  {/* Project Image */}
+                  <div className="w-full lg:w-1/2 relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-lg overflow-hidden mb-4 lg:mb-0">
+                    <Image
+                      src={projects[currentIndex].image}
+                      alt={projects[currentIndex].title}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
-                  
-                  <motion.a  href={projects[currentIndex].githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative bg-gradient-to-r from-neon-orange to-neon-purple text-white px-6 py-3 rounded-lg font-semibold
+                  {/* Project Info */}
+                  <div className="w-full lg:w-1/2 lg:p-4 lg:pl-6 flex flex-col">
+                    <h3 className="flex flex-col items-baseline gap-2 text-base sm:text-lg lg:text-xl">
+                      <span className="font-bold text-neon-orange font-orbitron">{projects[currentIndex].title}</span>
+                    </h3>
+                    <p className="text-off-white text-xs sm:text-sm mt-3 leading-relaxed text-left sm:text-justify">
+                      {projects[currentIndex].description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {projects[currentIndex].technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="text-xs px-3 py-1 rounded-full glassmorphism text-cyber-cyan border border-cyber-cyan/30 hover:border-neon-orange/50 transition-all duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+
+                    <motion.a href={projects[currentIndex].githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative bg-gradient-to-r from-neon-orange to-neon-purple text-white px-6 py-3 rounded-lg font-semibold
                             transition-all duration-500 transform
                             inline-flex items-center gap-2 mt-4 w-fit font-orbitron tracking-wide"
-                    whileHover={{
-                      scale: 1.08,
-                      boxShadow: "0 15px 35px rgba(6, 182, 212, 0.4)",
-                      y: -3
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      <ExternalLink size={16} />
-                      Explore Project
-                    </span>
-                  </motion.a>
+                      whileHover={{
+                        scale: 1.08,
+                        boxShadow: "0 15px 35px rgba(6, 182, 212, 0.4)",
+                        y: -3
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                    >
+                      <span className="relative z-10 flex items-center gap-2">
+                        <ExternalLink size={16} />
+                        Explore Project
+                      </span>
+                    </motion.a>
+                  </div>
                 </div>
               </div>
-            </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Dots Navigation - Fixed to page bottom with consistent gap */}
         <div className="flex justify-center space-x-2">
-            {projects.map((_, index) => (
-              <motion.button
-                key={index}
-                onClick={() => handleDotClick(index)}
-                className="relative"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              >
+          {projects.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => handleDotClick(index)}
+              className="relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            >
+              <motion.div
+                className={`w-3 h-3 rounded-full transition-all duration-300 border-2
+                    ${index === currentIndex
+                    ? 'bg-cyber-cyan border-cyber-cyan shadow-lg shadow-cyber-cyan/50'
+                    : 'bg-transparent border-medium-gray hover:border-cyber-cyan'}`}
+                whileHover={index !== currentIndex ? {
+                  borderColor: "#06b6d4",
+                  boxShadow: "0 0 10px rgba(6, 182, 212, 0.3)"
+                } : {}}
+              />
+              {index === currentIndex && (
                 <motion.div
-                  className={`w-3 h-3 rounded-full transition-all duration-300 border-2
-                    ${index === currentIndex 
-                      ? 'bg-cyber-cyan border-cyber-cyan shadow-lg shadow-cyber-cyan/50' 
-                      : 'bg-transparent border-medium-gray hover:border-cyber-cyan'}`}
-                  whileHover={index !== currentIndex ? {
-                    borderColor: "#06b6d4",
-                    boxShadow: "0 0 10px rgba(6, 182, 212, 0.3)"
-                  } : {}}
+                  className="absolute inset-0 rounded-full bg-cyber-cyan opacity-50"
+                  animate={{ scale: [1, 1.5, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 />
-                {index === currentIndex && (
-                  <motion.div 
-                    className="absolute inset-0 rounded-full bg-cyber-cyan opacity-50"
-                    animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                )}
-              </motion.button>
-            ))}
+              )}
+            </motion.button>
+          ))}
         </div>
       </motion.div>
     </section>
