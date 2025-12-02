@@ -196,7 +196,7 @@ const HeroSection = () => {
       {/* Scroll indicator */}
       {showScrollIndicator && (
         <motion.div
-          className="fixed bottom-8 left-0 right-0 text-medium-gray z-40 flex justify-center"
+          className="fixed bottom-8 left-0 right-0 text-medium-gray z-40 hidden md:flex justify-center"
           initial={{ opacity: 0, y: 50, scale: 0.8 }}
           animate={{
             opacity: animationState === 'visible' ? 1 : 0,
